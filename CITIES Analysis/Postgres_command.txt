@@ -1,0 +1,2 @@
+COPY trade(year, appendix, taxon, class, ord, family, genus, term, quantity, unit, importer, exporter, origin, purpose, source, reporter_type, import_permit_randomID, export_permit_randomID, origin_permit_randomID)
+FROM 'cites/trade_db_41.csv' DELIMITER ',' CSV HEADER;

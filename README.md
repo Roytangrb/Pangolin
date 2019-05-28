@@ -6,10 +6,11 @@
      - Description: report records of import/export of pangolins by countries (non-transactional record)
      - Major Fields: ```Year```, ```Taxon```, ```Importer```, ```Exporter```, ```Origin```, ```Imp Quantity```, ```Imp Unit```, ```Imp Term```, ```Imp Purpose```, ```Imp Source```, ```(Re-)Exp Quantity```, ```(Re-)Exp Unit```, ```(Re-)Exp Term```, ```(Re-)Exp Purpose```, ```(Re-)Exp Source```
      - Data Subset of Manidae - [data download](https://github.com/Roytangrb/pangolin/tree/master/CITIES%20Analysis/manidae.csv)
-     - Size: 1 million+ records (full dataset)
+     - Size: 20 million+ records (full dataset)
      - Range: ***1975*** onwards
      - Format: CSV
      - Source: NGO
+     - Remarks: ***Error data not marching headers are spliced out. Error Data and Locations can be viewed on this*** [notebook](https://github.com/Roytangrb/pangolin/blob/master/CITIES%20Analysis/cites.ipynb) (spliced out data do not concern Manidae but other species)
 
   2. [Environmantal Investigation Agency](https://eia-international.org/wildlife/wildlife-trade-maps/illegal-trade-seizures-pangolins/)
      - [Carto link](https://tomaszjohnson.carto.com/builder/5fe400fc-8202-4c65-ac51-48dbcb052f6e/embed)
