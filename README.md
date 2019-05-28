@@ -1,10 +1,11 @@
 # Pangolin Project Data Catalog
 
 ## Global Dataset
- 1. [CITES Trade Database](https://trade.cites.org/) 
+ 1. [CITES Trade Database Download](https://trade.cites.org/) 
      - [Database Documentation](https://trade.cites.org/cites_trade_guidelines/en-CITES_Trade_Database_Guide.pdf )
      - Description: report records of import/export of pangolins by countries (non-transactional record)
      - Major Fields: ```Year```, ```Taxon```, ```Importer```, ```Exporter```, ```Origin```, ```Imp Quantity```, ```Imp Unit```, ```Imp Term```, ```Imp Purpose```, ```Imp Source```, ```(Re-)Exp Quantity```, ```(Re-)Exp Unit```, ```(Re-)Exp Term```, ```(Re-)Exp Purpose```, ```(Re-)Exp Source```
+     - Data Subset of Manidae - [data download](https://github.com/Roytangrb/pangolin/tree/master/CITIES%20Analysis/manidae.csv)
      - Size: 1 million+ records (full dataset)
      - Range: ***1975*** onwards
      - Format: CSV
@@ -40,7 +41,7 @@
 
 
 ## Hong Kong Dataset
- 1. [Hong Kong Customs Press Release](https://docs.google.com/spreadsheets/d/1IjPrjt--8NIioltO7pHv4X_5W4wmj48C_HzzWJL4lHg/edit#gid=69729802)
+ 1. [Hong Kong Customs Press Release data download](https://docs.google.com/spreadsheets/d/1IjPrjt--8NIioltO7pHv4X_5W4wmj48C_HzzWJL4lHg/edit#gid=69729802)
      - [Repo](https://github.com/Roytangrb/pangolin/tree/master/hkcustomdata)
      - Description: Text data on HK Customs press release
      - Major Fields: ```Year```, ```Month```, ```Date```, ```Title```, ```Url```, ```Article```
@@ -51,7 +52,7 @@
 
 ## Nepal Dataset
  1. Central Investigation Bureau, Nepal Police
-     - [Repo](https://github.com/Roytangrb/pangolin/tree/master/nepal)
+     - [data download](https://github.com/Roytangrb/pangolin/tree/master/nepal)
      - Description: summary of pangolin operation data since 2012
      - Major Fields: N/A
      - Size: N/A
