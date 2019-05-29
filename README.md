@@ -4,7 +4,7 @@
  1. [CITES Trade Database Download](https://trade.cites.org/) 
      - [Database Documentation](https://trade.cites.org/cites_trade_guidelines/en-CITES_Trade_Database_Guide.pdf )
      - Description: report records of import/export of pangolins by countries (non-transactional record)
-     - Major Fields: ```Year```, ```Taxon```, ```Importer```, ```Exporter```, ```Origin```, ```Imp Quantity```, ```Imp Unit```, ```Imp Term```, ```Imp Purpose```, ```Imp Source```, ```(Re-)Exp Quantity```, ```(Re-)Exp Unit```, ```(Re-)Exp Term```, ```(Re-)Exp Purpose```, ```(Re-)Exp Source```
+     - Major Fields: ```Year```, ```Taxon```, ```Importer```, ```Exporter```, ```Origin```, ```Imp Quantity```, ```Imp Unit```, ```Imp Term```, ```Imp Purpose```, ```Imp Source```, ```Reporter Type```
      - Data Subset of Manidae - [data download](https://github.com/Roytangrb/pangolin/tree/master/CITIES%20Analysis/manidae.csv)
      - Size: 20 million+ records (full dataset)
      - Range: ***1975*** onwards
