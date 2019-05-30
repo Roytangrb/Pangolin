@@ -10,7 +10,7 @@
      - Range: ***1975*** onwards
      - Format: CSV
      - Source: NGO
-     - Remarks: ***Error data not marching headers are spliced out. Error Data and Locations can be viewed on this*** [notebook](https://github.com/Roytangrb/pangolin/blob/master/CITIES%20Analysis/cites.ipynb) (spliced out data do not concern Manidae but other species)
+     - Remarks: ***Error data not marching headers are spliced out. Error Data and Locations can be viewed on this*** [notebook](https://github.com/Roytangrb/pangolin/blob/master/CITES%20Analysis/manidae.ipynb) (spliced out data do not concern Manidae but other species)
 
   2. [Environmantal Investigation Agency](https://eia-international.org/wildlife/wildlife-trade-maps/illegal-trade-seizures-pangolins/)
      - [Carto link](https://tomaszjohnson.carto.com/builder/5fe400fc-8202-4c65-ac51-48dbcb052f6e/embed)
