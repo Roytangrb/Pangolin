@@ -1,5 +1,8 @@
 # Pangolin Project Data Catalog
 
+## Task
+ - [ ] Delevelop dataset schema for data collection in other countries
+
 ## Global Dataset
  1. [CITES Trade Database Download](https://trade.cites.org/) 
      - [Database Documentation](https://trade.cites.org/cites_trade_guidelines/en-CITES_Trade_Database_Guide.pdf )
@@ -11,6 +14,9 @@
      - Format: CSV
      - Source: NGO
      - Remarks: ***Error data not marching headers are spliced out. Error Data and Locations can be viewed on this*** [notebook](https://github.com/Roytangrb/pangolin/blob/master/CITES%20Analysis/manidae.ipynb) (spliced out data do not concern Manidae but other species)
+     - Status: Exploratory analysis
+     - TODO
+       - [ ] calculate scales(kg) to individual number (scale to weight ratio of different species) (paul savepangolins.org)
 
   2. [Environmantal Investigation Agency](https://eia-international.org/wildlife/wildlife-trade-maps/illegal-trade-seizures-pangolins/)
      - [Carto link](https://tomaszjohnson.carto.com/builder/5fe400fc-8202-4c65-ac51-48dbcb052f6e/embed)
@@ -21,6 +27,8 @@
      - Format: Plot Map Visual
      - Source: NGO
      - Remarks: ***raw data need to be requested***
+     - Status: Karen filed the request, 2018 data not available until October at earliest. Try requesting raw.
+
   3. [Traffic reports on pangolins](https://www.traffic.org/publications/search/?q=pangolins)
      - Format: PDF 
 
@@ -46,6 +54,10 @@
      - Info at Jiaming's
      - 200+ medicine kinds
      - Medical value, components, quantity, origin, term
+
+  4. Government Stock
+
+  5. Hospital Usage
 
 
 ## Hong Kong Dataset
