@@ -23,7 +23,7 @@
      - Remarks: ***raw data need to be requested***
 
 ## China Dataset
- 1. [China Judgements Online Database](http://wenshu.court.gov.cn/)
+  1. [China Judgements Online Database](http://wenshu.court.gov.cn/)
      - Description: Gov official GUI courtcase search website tool
      - Major Fields: N/A
      - Size: N/A
@@ -39,6 +39,11 @@
      - Range: media reports from ***2008*** - ***2016***
      - Format: Excel
      - Source: Academic (media reports, court verdicts, CITES...)
+
+  3. Chinese Medicine Consumption
+     - Info at Jiaming's
+     - 200+ medicine kinds
+     - Medical value, components, quantity, origin, term
 
 
 ## Hong Kong Dataset
