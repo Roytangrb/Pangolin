@@ -1,6 +1,6 @@
 var myChart = echarts.init(document.getElementById('scales_globe'));
 
-fetch('../assets/data-1483975567865-BJOcimZIg.json')
+fetch('../assets/scales.json')
   .then(res => res.json())
   .then(json => {
       render(json)
@@ -8,21 +8,15 @@ fetch('../assets/data-1483975567865-BJOcimZIg.json')
 
 function render(data) {
   console.log(data)
-  function getAirportCoord(idx) {
-      return [data.airports[idx][3], data.airports[idx][4]];
-  }
-  var routes = data.routes.map(function(airline) {
-      return [
-          getAirportCoord(airline[1]),
-          getAirportCoord(airline[2])
-      ];
-  });
+  
+  var routes_import = data.import.map(d => d.route)
+  var routes_export = data.export.map(d => d.route)
 
   myChart.setOption({
       backgroundColor: '#000',
       globe: {
-          baseTexture: '../assets/data-1491837049070-rJZtl7Y6x.jpg',
-          heightTexture: '../assets/data-1491889019097-rJQYikcpl.jpg',
+          baseTexture: '../assets/baseTexture.jpg',
+          heightTexture: '../assets/heightTexture.jpg',
 
           shading: 'lambert',
 
@@ -39,7 +33,7 @@ function render(data) {
               autoRotate: false
           }
       },
-      series: {
+      series: [{
 
           type: 'lines3D',
 
@@ -48,12 +42,26 @@ function render(data) {
           blendMode: 'lighter',
 
           lineStyle: {
-              width: 1,
+              width: 6,
               color: 'rgb(50, 50, 150)',
-              opacity: 0.1
+              opacity: 0.2
           },
 
-          data: routes
-      }
+          data: routes_import
+      },{
+          type: 'lines3D',
+
+          coordinateSystem: 'globe',
+
+          blendMode: 'lighter',
+
+          lineStyle: {
+            width: 6,
+            color: 'rgb(150, 50, 50)',
+            opacity: 0.2
+          },
+
+          data: routes_export
+      }]
   });
 }
