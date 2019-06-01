@@ -1,6 +1,6 @@
 var myChart = echarts.init(document.getElementById('scales_globe'));
 
-fetch('../assets/scales.json')
+fetch('assets/scales.json')
   .then(res => res.json())
   .then(json => {
       render(json)
@@ -15,8 +15,8 @@ function render(data) {
   myChart.setOption({
       backgroundColor: '#000',
       globe: {
-          baseTexture: '../assets/baseTexture.jpg',
-          heightTexture: '../assets/heightTexture.jpg',
+          baseTexture: 'assets/baseTexture.jpg',
+          heightTexture: 'assets/heightTexture.jpg',
 
           shading: 'lambert',
 
