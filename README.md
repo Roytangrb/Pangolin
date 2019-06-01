@@ -21,6 +21,8 @@
      - Format: Plot Map Visual
      - Source: NGO
      - Remarks: ***raw data need to be requested***
+  3. [Traffic reports on pangolins](https://www.traffic.org/publications/search/?q=pangolins)
+     - Format: PDF 
 
 ## China Dataset
   1. [China Judgements Online Database](http://wenshu.court.gov.cn/)
@@ -65,3 +67,9 @@
      - Range: Since ***2012***
      - Format: Summary data
      - Source: government
+
+## Vietname Dataset
+  1. [USAID - Buyer Profile](https://www.usaidwildlifeasia.org/resources/reports)
+    - buyer demographics
+    - need research on the comprehensive survey
+    - from vietnam country report
