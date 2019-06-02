@@ -13,7 +13,7 @@ function render(data) {
   var routes_export = data.export.map(d => d.route)
 
   myChart.setOption({
-      backgroundColor: '#000',
+      backgroundColor: '#4d4e4f',
       globe: {
           baseTexture: 'assets/baseTexture.jpg',
           heightTexture: 'assets/heightTexture.jpg',
