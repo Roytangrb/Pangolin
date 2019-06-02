@@ -1,3 +1,4 @@
+//https://gallery.echartsjs.com/editor.html?c=xrJ5YWDj7M
 var myChart = echarts.init(document.getElementById('scales_globe'));
 
 fetch('assets/scales.json')
@@ -6,14 +7,12 @@ fetch('assets/scales.json')
       render(json)
   })
 
-function render(data) {
-  console.log(data)
-  
+function render(data) {  
   var routes_import = data.import.map(d => d.route)
   var routes_export = data.export.map(d => d.route)
 
   myChart.setOption({
-      backgroundColor: '#000',
+      backgroundColor: '#4d4e4f',
       globe: {
           baseTexture: 'assets/baseTexture.jpg',
           heightTexture: 'assets/heightTexture.jpg',
@@ -30,6 +29,9 @@ function render(data) {
           },
 
           viewControl: {
+              distance: 200,
+              alpha: 23,
+              beta: 180,
               autoRotate: false
           }
       },
@@ -38,6 +40,10 @@ function render(data) {
           type: 'lines3D',
 
           coordinateSystem: 'globe',
+          
+          effect: {
+            show: true
+          },
 
           blendMode: 'lighter',
 
@@ -54,10 +60,14 @@ function render(data) {
           coordinateSystem: 'globe',
 
           blendMode: 'lighter',
-
+          
+          effect: {
+            show: true
+          },
+          
           lineStyle: {
             width: 6,
-            color: 'rgb(150, 50, 50)',
+            color: 'rgb(50, 50, 150)',
             opacity: 0.2
           },
 
