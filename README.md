@@ -50,16 +50,25 @@
      - Format: Excel
      - Source: Academic (media reports, court verdicts, CITES...)
 
-  3. Chinese Medicine Consumption
-     - Info at Jiaming's
-     - 200+ medicine kinds
-     - Medical value, components, quantity, origin, term
+  3. [Pangolin ingredient in Chinese Medicine]()
+     - Description: Stats of hospitals using medicine with pangolin ingredients, 209 medicine companies, 78 kinds of medicine, 715 hospital
+     - Major Field: ```Province```, ```Hospitals Using Medicine with pangolin ingredient```, ```Medicine name```, ```Permit ID```, ```Production Companies```
+     - Size:  (Normalised)
+     - Timestamp: 2016
+     - Format: Excel
+     - Source: China Food and Drug Administration
+     - Remarks: shared by Jiaming
 
   4. Government Stock
 
-  5. Hospital Usage
-
-  6. Pangolin Farming Company
+  5. Pangolin related Company
+     - Description: Qixin.com pangolin keyword search
+     - Major Fields: ```Company Name```, ```ID```, ```Province```, ```City```, ```Legal Representative```, ```Registered Capital```, ```Founder Date```, ```Business```, ```Tel```, ```Address```, ```Email```, ```website```
+     - Size: 120 companies
+     - Timestamp: 01-06-2019
+     - Format: Excel (Normalised)
+     - Source: Qixin open data
+     - Remarks:
 
 
 ## Hong Kong Dataset
