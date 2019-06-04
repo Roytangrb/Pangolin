@@ -5,8 +5,8 @@
 
 ## Shared Docs
  - [20190601 Workshop Data Session Slides](https://docs.google.com/presentation/d/1wB5cf75hAbNADG9mymg9xkDNMBLuPGhacTZpZqLVsyg/edit?usp=sharing)  
+ - [20190601 Pangolin data game plan](https://docs.google.com/document/d/166GK6Lsq7-NkxUqYSJ_2Kr46qFX8FZLHY8kBN6DaV5I/edit)
  - [20190602 Mapping the routes story](https://docs.google.com/document/d/1Gj6y-f-_dlizGP6nQR4bKfpKGlRds6O6IuUFtLEqKKM/edit)
- - [Pangolin data game plan](https://docs.google.com/document/d/166GK6Lsq7-NkxUqYSJ_2Kr46qFX8FZLHY8kBN6DaV5I/edit)
 
 ## Global Dataset
  1. [CITES Trade Database Download](https://trade.cites.org/) 
@@ -85,6 +85,16 @@
      - Range: ***2004*** - ***2018***
      - Format: TSV/Excel/Spreadsheet
      - Source: Government (self scraped & curated database)
+
+## Taiwan Dataset
+ 1. [Taiwan court case](https://law.judicial.gov.tw/FJUD/default.aspx)
+     - [data](https://github.com/Roytangrb/pangolin/tree/master/taiwan)
+     - Description: Court case results by keyword search '穿山甲'
+     - Major Fields: ```Cause of Action```, ```Court Info```, ```Date```, ```Url```
+     - Size: 104 (including unrelated cases)
+     - Range: ***1997*** - ***2019***
+     - Format: Excel
+     - Source: Taiwan Judicial
 
 ## Nepal Dataset
  1. Central Investigation Bureau, Nepal Police
