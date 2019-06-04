@@ -1,5 +1,7 @@
 # Pangolin Project Data Catalog
 
+## [Visuals Template](https://roytangrb.github.io/pangolin/)
+
 ## Task
  - [ ] Delevelop dataset schema for data collection in other countries
 
@@ -50,12 +52,12 @@
      - Format: Excel
      - Source: Academic (media reports, court verdicts, CITES...)
 
-  3. [Pangolin ingredient in Chinese Medicine]()
+  3. [Pangolin ingredient in Chinese Medicine](https://github.com/Roytangrb/pangolin/blob/master/china/medicine_company_province_union.csv)
      - Description: Stats of hospitals using medicine with pangolin ingredients, 209 medicine companies, 78 kinds of medicine, 715 hospital
      - Major Field: ```Province```, ```Hospitals Using Medicine with pangolin ingredient```, ```Medicine name```, ```Permit ID```, ```Production Companies```
-     - Size:  (Normalised)
+     - Size: 314 medicine-medcine_company records(Normalised)
      - Timestamp: 2016
-     - Format: Excel
+     - Format: csv
      - Source: China Food and Drug Administration
      - Remarks: shared by Jiaming
 
