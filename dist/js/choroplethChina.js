@@ -107,7 +107,7 @@ function render2 (geo) {
   echarts.registerMap('China', geo, {});
   option = {
       title: {
-          text: 'Designated Hospital Using Products from Pangolins',
+          text: 'Designated Hospitals Using Products from Pangolins',
           subtext: 'Total: 712 hospitals',
           sublink: '',
           left: 'right'
