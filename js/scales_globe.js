@@ -12,7 +12,7 @@ function render(data) {
   var routes_export = data.export.map(d => d.route)
 
   myChart.setOption({
-      backgroundColor: '#4d4e4f',
+      backgroundColor: '#b7c0ce',
       globe: {
           baseTexture: 'assets/baseTexture.jpg',
           heightTexture: 'assets/heightTexture.jpg',
@@ -30,9 +30,9 @@ function render(data) {
 
           viewControl: {
               distance: 200,
-              alpha: 23,
-              beta: 180,
-              autoRotate: false
+              alpha: 0,
+              beta: 90,
+              autoRotate: true
           }
       },
       series: [{
