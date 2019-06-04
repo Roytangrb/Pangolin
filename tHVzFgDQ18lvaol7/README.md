@@ -1,9 +1,12 @@
 # Pangolin Project Data Catalog
 
-## [Visuals Template](https://roytangrb.github.io/pangolin/)
+## Visuals Template
+ - [Template Preview](https://roytangrb.github.io/pangolin/)
 
-## Task
- - [ ] Delevelop dataset schema for data collection in other countries
+## Shared Docs
+ - [20190601 Workshop Data Session Slides](https://docs.google.com/presentation/d/1wB5cf75hAbNADG9mymg9xkDNMBLuPGhacTZpZqLVsyg/edit?usp=sharing)  
+ - [20190602 Mapping the routes story](https://docs.google.com/document/d/1Gj6y-f-_dlizGP6nQR4bKfpKGlRds6O6IuUFtLEqKKM/edit)
+ - [Pangolin data game plan](https://docs.google.com/document/d/166GK6Lsq7-NkxUqYSJ_2Kr46qFX8FZLHY8kBN6DaV5I/edit)
 
 ## Global Dataset
  1. [CITES Trade Database Download](https://trade.cites.org/) 
