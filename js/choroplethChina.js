@@ -2,18 +2,28 @@
 
 var map1 = echarts.init(document.getElementById('choropleth-map1'));
 var map2 = echarts.init(document.getElementById('choropleth-map2'));
+var hosScatter = echarts.init(document.getElementById('scatter'));
 map1.showLoading();
 map2.showLoading();
+hosScatter.showLoading();
 
 fetch('assets/chinageo.json')
   .then(res => res.json())
   .then(json => {
-      render1(json)
-      render2(json)
+      render1(json) //register map as China
+      render2()
+      fetchScatterData()
   })
 
+function fetchScatterData(){
+    fetch('assets/lnglat_hospital.json')
+      .then(res => res.json())
+      .then(data => {
+        renderHosScatter(data)
+      })
+}
+
 function render1 (geo) {
-    console.log(geo)
     map1.hideLoading();
 
     echarts.registerMap('China', geo, {});
@@ -29,9 +39,7 @@ function render1 (geo) {
             showDelay: 0,
             transitionDuration: 0.2,
             formatter: function (params) {
-                var value = (params.value + '').split('.');
-                value = value[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,');
-                return params.seriesName + '<br/>' + params.name + ': ' + value;
+                return params.name + ': ' + params.value;
             }
         },
         visualMap: {
@@ -41,7 +49,7 @@ function render1 (geo) {
             inRange: {
                 color: ['#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
             },
-            text:['High','Low'],           // 文本，默认为数值文本
+            text:['Max','Min'],           // 文本，默认为数值文本
             calculable: true
         },
         toolbox: {
@@ -101,10 +109,9 @@ function render1 (geo) {
 };
 
 
-function render2 (geo) {
+function render2 () {
   map2.hideLoading();
 
-  echarts.registerMap('China', geo, {});
   option = {
       title: {
           text: 'Designated Hospitals Using Products from Pangolins',
@@ -117,9 +124,7 @@ function render2 (geo) {
           showDelay: 0,
           transitionDuration: 0.2,
           formatter: function (params) {
-              var value = (params.value + '').split('.');
-              value = value[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,');
-              return params.seriesName + '<br/>' + params.name + ': ' + value;
+              return params.name + ': ' + params.value;
           }
       },
       visualMap: {
@@ -129,7 +134,7 @@ function render2 (geo) {
           inRange: {
               color: ['#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
           },
-          text:['High','Low'],           // 文本，默认为数值文本
+          text:['Max','Min'],           // 文本，默认为数值文本
           calculable: true
       },
       toolbox: {
@@ -191,3 +196,51 @@ function render2 (geo) {
 
   map2.setOption(option);
 };
+
+function renderHosScatter (data) {
+    //https://echarts.baidu.com/blog/2016/04/28/echarts-map-tutorial.html
+    hosScatter.hideLoading();
+  
+    option = {
+        title: {
+            text: 'Designated Hospitals Using Products from Pangolins',
+            subtext: 'Total: 712 hospitals',
+            sublink: '',
+            left: 'right'
+        },
+        tooltip: {
+            trigger: 'item',
+            showDelay: 0,
+            transitionDuration: 0.2,
+            formatter: function (params) {
+                return params.name
+            }
+        },
+        toolbox: {
+            show: false,
+        },
+        geo: {
+            map: 'China',
+            roam: true,
+            itemStyle: {					// 定义样式
+                normal: {					// 普通状态下的样式
+                    areaColor: '#323c48',
+                    borderColor: '#111'
+                },
+                emphasis: {					// 高亮状态下的样式
+                    areaColor: '#2a333d'
+                }
+            },
+        },
+
+        series: [{
+            name: 'hospital',
+            type: 'scatter',
+            coordinateSystem: 'geo',
+            symbolSize: 5,
+            data: data
+        }]
+    };
+  
+    hosScatter.setOption(option);
+  };
