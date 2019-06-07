@@ -2,7 +2,7 @@
 
 ## Visuals Template
  - [globe](https://roytangrb.github.io/pangolin/)
- - [choropleth/marker plot](https://roytangrb.github.io/pangolin/chinamedcomp.html)
+ - [choropleth/scatter plot](https://roytangrb.github.io/pangolin/chinamedcomp.html)
 
 ## Shared Docs
  - [20190601 Workshop Data Session Slides](https://docs.google.com/presentation/d/1wB5cf75hAbNADG9mymg9xkDNMBLuPGhacTZpZqLVsyg/edit?usp=sharing)  
