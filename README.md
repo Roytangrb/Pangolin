@@ -1,13 +1,17 @@
 # Pangolin Project Data Catalog
 
+## Shared Docs
+### Stories
+ - [20190602 Mapping the routes story](https://docs.google.com/document/d/1Gj6y-f-_dlizGP6nQR4bKfpKGlRds6O6IuUFtLEqKKM/edit)
+
+ ### Data
+ - [20190601 Workshop Data Session Slides](https://docs.google.com/presentation/d/1wB5cf75hAbNADG9mymg9xkDNMBLuPGhacTZpZqLVsyg/edit?usp=sharing)  
+ - [20190601 Pangolin data game plan](https://docs.google.com/document/d/166GK6Lsq7-NkxUqYSJ_2Kr46qFX8FZLHY8kBN6DaV5I/edit)
+ - [20190600 Pangolins data of China](https://docs.google.com/presentation/d/1cn4WpiCWFEn7d4mE2LN5Fhh_O121zUuyiEgqArfL5j0/edit#slide=id.g5b37640d24_0_18)
+
 ## Visuals Template
  - [globe](https://roytangrb.github.io/pangolin/)
  - [choropleth/scatter plot](https://roytangrb.github.io/pangolin/chinamedcomp.html)
-
-## Shared Docs
- - [20190601 Workshop Data Session Slides](https://docs.google.com/presentation/d/1wB5cf75hAbNADG9mymg9xkDNMBLuPGhacTZpZqLVsyg/edit?usp=sharing)  
- - [20190601 Pangolin data game plan](https://docs.google.com/document/d/166GK6Lsq7-NkxUqYSJ_2Kr46qFX8FZLHY8kBN6DaV5I/edit)
- - [20190602 Mapping the routes story](https://docs.google.com/document/d/1Gj6y-f-_dlizGP6nQR4bKfpKGlRds6O6IuUFtLEqKKM/edit)
 
 ## Global Dataset
  1. [CITES Trade Database Download](https://trade.cites.org/) 
@@ -20,7 +24,7 @@
      - Format: CSV
      - Source: NGO
      - Remarks: ***Error data not marching headers are spliced out. Error Data and Locations can be viewed on this*** [notebook](https://github.com/Roytangrb/pangolin/blob/master/CITES%20Analysis/manidae.ipynb) (spliced out data do not concern Manidae but other species)
-     - Status: Exploratory analysis
+     - Status: Exploratory analysis. Karen filed the request, 2018 data not available until October at earliest.
      - TODO
        - [ ] calculate scales(kg) to individual number (scale to weight ratio of different species) (paul savepangolins.org)
 
@@ -29,11 +33,11 @@
      - Description: a subset seizure incidents from 2000 to 2018, compiled from publicly available records and represents only a fraction of actual trade during that period
      - Major Fields: ```Location```, ```Volume(Est.)``` (no raw data publicly available)
      - Size: N/A
-     - Range: ***2000*** - ***March 2009***
+     - Range: ***2000*** - ***2018***
      - Format: Plot Map Visual
      - Source: NGO
      - Remarks: ***raw data need to be requested***
-     - Status: Karen filed the request, 2018 data not available until October at earliest. Try requesting raw.
+     - Status: Request Sent
 
   3. [Traffic reports on pangolins](https://www.traffic.org/publications/search/?q=pangolins)
      - Format: PDF 
