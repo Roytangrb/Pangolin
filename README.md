@@ -44,12 +44,13 @@
 
 ## China Dataset
   1. [China Judgements Online Database](http://wenshu.court.gov.cn/)
-     - Description: Gov official GUI courtcase search website tool
+     - [Repo](https://github.com/Roytangrb/pangolin/tree/master/china/wenshu)
+     - Description: GUI courtcase search website tool
      - Major Fields: N/A
-     - Size: N/A
+     - Size: 109 - 117 (search results vary)
      - Range: N/A
-     - Format: MS Word
-     - Source: Government
+     - Format: Judgement text
+     - Source: Judicial
 
   2. [HKU Paper on Pangolin Seizures in China](https://onlinelibrary.wiley.com/doi/full/10.1111/conl.12339)
      - [Research data download](https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1111%2Fconl.12339&file=conl12339-sup-0002-tableS1.xlsx)
@@ -100,6 +101,16 @@
      - Range: ***1997*** - ***2019***
      - Format: Excel
      - Source: Taiwan Judicial
+
+## Malaysia Dataset
+ 1. [Pangolin Seizure in Malaysia](https://docs.google.com/spreadsheets/d/1Im0sLEv3zeFeTQ15TWW74nhmqyqGAGNecLhDqygYm-w/edit?usp=sharing)
+     - [data](https://docs.google.com/spreadsheets/d/1Im0sLEv3zeFeTQ15TWW74nhmqyqGAGNecLhDqygYm-w/edit?usp=sharing)
+     - Description: Pangolin seizure cases summarised from media reports
+     - Major Fields: ```Date```, ```Amount (Live)```, ```Amount (Frozen)```, ```Amount (Scales)```, ```Amount (Parts)```, ```Agg number of panglins```, ```Form/Term```, ```Location```, ```Origin```, ```Destination```, ```Person```, ```Offense```, ```Status```, ```Link```, ```Notes```
+     - Size: 30
+     - Range: ***2011*** - ***2019***
+     - Format: Excel/Spreadsheet
+     - Source: Media Reports
 
 ## Nepal Dataset
  1. Central Investigation Bureau, Nepal Police
