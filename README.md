@@ -53,6 +53,9 @@
      - Range: N/A
      - Format: Judgement text
      - Source: Judicial
+     - Supplementary: 
+       - [OpenLaw](http://openlaw.cn/) case summary search
+       - [Working sheet from JM](https://docs.google.com/spreadsheets/d/1Bbp05Hh_fMfU17PYW_2p0d_Peab9EBmw9gDjdUGRuS0/edit?ts=5d07b09b#gid=0)
 
   2. [HKU Paper on Pangolin Seizures in China](https://onlinelibrary.wiley.com/doi/full/10.1111/conl.12339)
      - [Research data download](https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1111%2Fconl.12339&file=conl12339-sup-0002-tableS1.xlsx)
