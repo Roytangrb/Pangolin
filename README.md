@@ -55,6 +55,7 @@
      - Source: Judicial
      - Supplementary: 
        - [OpenLaw](http://openlaw.cn/) case summary search
+       - [itslaw](https://www.itslaw.com/search?searchMode=judgements&sortType=1&conditions=searchWord%2B%E7%A9%BF%E5%B1%B1%E7%94%B2%2B1%2B%E7%A9%BF%E5%B1%B1%E7%94%B2) a more handy case search platform
        - [Working sheet from JM](https://docs.google.com/spreadsheets/d/1Bbp05Hh_fMfU17PYW_2p0d_Peab9EBmw9gDjdUGRuS0/edit?ts=5d07b09b#gid=0)
 
   2. [HKU Paper on Pangolin Seizures in China](https://onlinelibrary.wiley.com/doi/full/10.1111/conl.12339)
