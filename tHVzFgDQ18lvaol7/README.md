@@ -8,6 +8,8 @@
  - [20190601 Workshop Data Session Slides](https://docs.google.com/presentation/d/1wB5cf75hAbNADG9mymg9xkDNMBLuPGhacTZpZqLVsyg/edit?usp=sharing)  
  - [20190601 Pangolin data game plan](https://docs.google.com/document/d/166GK6Lsq7-NkxUqYSJ_2Kr46qFX8FZLHY8kBN6DaV5I/edit)
  - [20190600 Pangolins data of China](https://docs.google.com/presentation/d/1cn4WpiCWFEn7d4mE2LN5Fhh_O121zUuyiEgqArfL5j0/edit#slide=id.g5b37640d24_0_18)
+ - [Malaysian court online databases](https://docs.google.com/document/d/1hfFp6oBvOlVUlm0bkr3XVjhhF6p_cHjc-wbgcEO8088/edit) - for data research
+ - [Vietname databases](https://docs.google.com/document/d/1OlIRVrWh6YmPyxAtV-G03G-aV9Xfdjtopz7ja6MGcRs/edit?usp=sharing) - for data research
 
 ## Visuals Template
  - [globe](https://roytangrb.github.io/pangolin/)
@@ -51,6 +53,10 @@
      - Range: N/A
      - Format: Judgement text
      - Source: Judicial
+     - Supplementary: 
+       - [OpenLaw](http://openlaw.cn/) case summary search
+       - [itslaw](https://www.itslaw.com/search?searchMode=judgements&sortType=1&conditions=searchWord%2B%E7%A9%BF%E5%B1%B1%E7%94%B2%2B1%2B%E7%A9%BF%E5%B1%B1%E7%94%B2) a more handy case search platform
+       - [Working sheet from JM](https://docs.google.com/spreadsheets/d/1Bbp05Hh_fMfU17PYW_2p0d_Peab9EBmw9gDjdUGRuS0/edit?ts=5d07b09b#gid=0)
 
   2. [HKU Paper on Pangolin Seizures in China](https://onlinelibrary.wiley.com/doi/full/10.1111/conl.12339)
      - [Research data download](https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1111%2Fconl.12339&file=conl12339-sup-0002-tableS1.xlsx)
@@ -81,7 +87,6 @@
      - Source: Qixin open data
      - Remarks:
 
-
 ## Hong Kong Dataset
  1. [Hong Kong Customs Press Release data download](https://docs.google.com/spreadsheets/d/1IjPrjt--8NIioltO7pHv4X_5W4wmj48C_HzzWJL4lHg/edit#gid=69729802)
      - [Repo](https://github.com/Roytangrb/pangolin/tree/master/hkcustomdata)
@@ -91,6 +96,15 @@
      - Range: ***2004*** - ***2018***
      - Format: TSV/Excel/Spreadsheet
      - Source: Government (self scraped & curated database)
+
+  2. [Hong Kong Seizure Data by Karen](https://docs.google.com/spreadsheets/d/1LpIQD6fAAUldpZJg4o-HTnnWPWZxo_NZTZW7Zh-6t9w/edit?usp=sharing)
+     - Description: Summarized from HK Customs data
+     - Major Fields: ```Date of seizure```, ```Contraband```, ```Quantity (kg) ```, ```Other contraband```, ```Where found```, ```Seizure region```, ```Smuggled from```, ```Destination```, ```By```, ```More info about the contraband```, ```Any arrest?```, ```Worth (HK dollars)```, ```Others```, ```Notes```
+     - Size: 30 records
+     - Timestamp: ***2012*** - ***2019***
+     - Format: Excel 
+     - Source: Summarized from HK Customs data
+     - Remarks:
 
 ## Taiwan Dataset
  1. [Taiwan court case](https://law.judicial.gov.tw/FJUD/default.aspx)
@@ -123,7 +137,7 @@
      - Source: government
 
 ## Vietname Dataset
-  1. [USAID - Buyer Profile](https://www.usaidwildlifeasia.org/resources/reports)
-    - buyer demographics
-    - need research on the comprehensive survey
-    - from vietnam country report
+ 1. [USAID - Buyer Profile](https://www.usaidwildlifeasia.org/resources/reports)
+     - buyer demographics
+     - need research on the comprehensive survey
+     - from vietnam country report
