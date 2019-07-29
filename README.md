@@ -4,12 +4,13 @@
 ### Stories
  - [20190602 Mapping the routes story](https://docs.google.com/document/d/1Gj6y-f-_dlizGP6nQR4bKfpKGlRds6O6IuUFtLEqKKM/edit)
 
- ### Data
- - [20190601 Workshop Data Session Slides](https://docs.google.com/presentation/d/1wB5cf75hAbNADG9mymg9xkDNMBLuPGhacTZpZqLVsyg/edit?usp=sharing)  
- - [20190601 Pangolin data game plan](https://docs.google.com/document/d/166GK6Lsq7-NkxUqYSJ_2Kr46qFX8FZLHY8kBN6DaV5I/edit)
- - [20190600 Pangolins data of China](https://docs.google.com/presentation/d/1cn4WpiCWFEn7d4mE2LN5Fhh_O121zUuyiEgqArfL5j0/edit#slide=id.g5b37640d24_0_18)
- - [Malaysian court online databases](https://docs.google.com/document/d/1hfFp6oBvOlVUlm0bkr3XVjhhF6p_cHjc-wbgcEO8088/edit) - for data research
- - [Vietname databases](https://docs.google.com/document/d/1OlIRVrWh6YmPyxAtV-G03G-aV9Xfdjtopz7ja6MGcRs/edit?usp=sharing) - for data research
+### Data
+- [Patterns and Features in CITES](https://docs.google.com/presentation/d/1PGrCWcCy-S8KxtQAuohghaG6A4mMQwjpG8JA29xRstE/edit?usp=sharing)
+- [20190601 Workshop Data Session Slides](https://docs.google.com/presentation/d/1wB5cf75hAbNADG9mymg9xkDNMBLuPGhacTZpZqLVsyg/edit?usp=sharing)  
+- [20190601 Pangolin data game plan](https://docs.google.com/document/d/166GK6Lsq7-NkxUqYSJ_2Kr46qFX8FZLHY8kBN6DaV5I/edit)
+- [20190600 Pangolins data of China](https://docs.google.com/presentation/d/1cn4WpiCWFEn7d4mE2LN5Fhh_O121zUuyiEgqArfL5j0/edit#slide=id.g5b37640d24_0_18)
+- [Malaysian court online databases](https://docs.google.com/document/d/1hfFp6oBvOlVUlm0bkr3XVjhhF6p_cHjc-wbgcEO8088/edit) - for data research
+- [Vietname databases](https://docs.google.com/document/d/1OlIRVrWh6YmPyxAtV-G03G-aV9Xfdjtopz7ja6MGcRs/edit?usp=sharing) - for data research
 
 ## Visuals Template
  - [globe](https://roytangrb.github.io/pangolin/)
