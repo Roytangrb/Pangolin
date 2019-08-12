@@ -3,9 +3,11 @@
 var map1 = echarts.init(document.getElementById('choropleth-map1'));
 var map2 = echarts.init(document.getElementById('choropleth-map2'));
 var hosScatter = echarts.init(document.getElementById('scatter'));
+var courtScatter = echarts.init(document.getElementById('scatter-court'))
 map1.showLoading();
 map2.showLoading();
 hosScatter.showLoading();
+courtScatter.showLoading();
 
 fetch('assets/chinageo.json')
   .then(res => res.json())
@@ -13,6 +15,7 @@ fetch('assets/chinageo.json')
       render1(json) //register map as China
       render2()
       fetchScatterData()
+      fetchCourtScatterData()
   })
 
 function fetchScatterData(){
@@ -20,6 +23,14 @@ function fetchScatterData(){
       .then(res => res.json())
       .then(data => {
         renderHosScatter(data)
+      })
+}
+
+function fetchCourtScatterData(){
+    fetch('assets/lnglat_court_itslaw.json')
+      .then(res => res.json())
+      .then(data => {
+        renderCourtScatter(data)
       })
 }
 
@@ -243,4 +254,52 @@ function renderHosScatter (data) {
     };
   
     hosScatter.setOption(option);
-  };
+};
+
+function renderCourtScatter (data) {
+    //https://echarts.baidu.com/blog/2016/04/28/echarts-map-tutorial.html
+    courtScatter.hideLoading();
+  
+    option = {
+        title: {
+            text: 'Intances of court judgement related to pangolin consumption',
+            subtext: 'Total: 91 Courts Addresses',
+            sublink: '',
+            left: 'right'
+        },
+        tooltip: {
+            trigger: 'item',
+            showDelay: 0,
+            transitionDuration: 0.2,
+            formatter: function (params) {
+                return params.name
+            }
+        },
+        toolbox: {
+            show: false,
+        },
+        geo: {
+            map: 'China',
+            roam: true,
+            itemStyle: {          // 定义样式
+                normal: {         // 普通状态下的样式
+                    areaColor: '#323c48',
+                    borderColor: '#111'
+                },
+                emphasis: {         // 高亮状态下的样式
+                    areaColor: '#2a333d'
+                }
+            },
+        },
+
+        series: [{
+            name: 'court',
+            type: 'scatter',
+            coordinateSystem: 'geo',
+            symbolSize: 5,
+            data: data
+        }]
+    };
+  
+    courtScatter.setOption(option);
+};

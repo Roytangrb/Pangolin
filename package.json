@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "scrapCustom": "node ./hkcustomdata/scrapCustomData.js",
-    "publish": "node ./deploy.js"
+    "publish": "node ./deploy.js",
+    "serve": "python3 -m http.server"
   },
   "author": "Roy Tang",
   "license": "MIT",
