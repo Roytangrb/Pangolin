@@ -4,7 +4,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visuals Templates</title>
     <style>
-      #choropleth-map1, #choropleth-map2, #scatter, #scatter-court{
+      .center{
+        display: flex; flex-direction: column; justify-content: center; align-items: center;
+      }
+      #choropleth-map1, #choropleth-map2, #scatter, #scatter-court, #seizure-locations{
         width: 600px;
         height: 500px;
       }
@@ -12,10 +15,13 @@
   </head>
 
   <body>
-    <div id="choropleth-map1"></div>
-    <div id="choropleth-map2"></div>
-    <div id="scatter"></div>
-    <div id="scatter-court"></div>
+    <div class="center">
+      <div id="choropleth-map1"></div>
+      <div id="choropleth-map2"></div>
+      <div id="scatter"></div>
+      <div id="scatter-court"></div>
+      <div id="seizure-locations"></div>
+    </div>
     <script src="js/echarts.min.js"></script>
     <script src="js/choroplethChina.js"></script>
   </body>
