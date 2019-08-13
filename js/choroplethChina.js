@@ -4,10 +4,12 @@ var map1 = echarts.init(document.getElementById('choropleth-map1'));
 var map2 = echarts.init(document.getElementById('choropleth-map2'));
 var hosScatter = echarts.init(document.getElementById('scatter'));
 var courtScatter = echarts.init(document.getElementById('scatter-court'))
+var seizureLoc = echarts.init(document.getElementById('seizure-locations'))
 map1.showLoading();
 map2.showLoading();
 hosScatter.showLoading();
 courtScatter.showLoading();
+seizureLoc.showLoading();
 
 fetch('assets/chinageo.json')
   .then(res => res.json())
@@ -16,6 +18,7 @@ fetch('assets/chinageo.json')
       render2()
       fetchScatterData()
       fetchCourtScatterData()
+      renderSeizureLoc()
   })
 
 function fetchScatterData(){
@@ -302,4 +305,92 @@ function renderCourtScatter (data) {
     };
   
     courtScatter.setOption(option);
+};
+
+function renderSeizureLoc () {
+  seizureLoc.hideLoading();
+
+  option = {
+      title: {
+          text: 'Seizures locations',
+          subtext: 'Total: 144 Seizures',
+          sublink: 'Source: court judgements from 2017-2019',
+          left: 'right'
+      },
+      tooltip: {
+          trigger: 'item',
+          showDelay: 0,
+          transitionDuration: 0.2,
+          formatter: function (params) {
+              return params.name + ': ' + params.value;
+          }
+      },
+      visualMap: {
+          left: 'right',
+          min: 0,
+          max: 63,
+          inRange: {
+              color: ['#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+          },
+          text:['Max','Min'],           // 文本，默认为数值文本
+          calculable: true
+      },
+      toolbox: {
+          show: false,
+          //orient: 'vertical',
+          // left: 'left',
+          // top: 'top',
+          // feature: {
+          //     dataView: {readOnly: false},
+          //     restore: {},
+          //     saveAsImage: {}
+          // }
+      },
+      series: [
+          {
+              name: '',
+              type: 'map',
+              roam: true,
+              map: 'China',
+              itemStyle:{
+                  emphasis:{label:{show:true}}
+              },
+              data:[
+                {'name': '上海', 'value':  0},
+                {'name': '云南', 'value':  65},
+                {'name': '内蒙古', 'value': 2},
+                {'name': '北京', 'value':  0},
+                {'name': '吉林', 'value':  1},
+                {'name': '四川', 'value':  2},
+                {'name': '天津', 'value': 0},
+                {'name': '宁夏', 'value':  0},
+                {'name': '安徽', 'value':  2},
+                {'name': '山东', 'value':  0},
+                {'name': '山西', 'value':  0},
+                {'name': '广东', 'value':  17},
+                {'name': '广西', 'value':  16},
+                {'name': '新疆', 'value':  0},
+                {'name': '江苏', 'value':  0},
+                {'name': '江西', 'value':  1},
+                {'name': '河北', 'value':  1},
+                {'name': '河南', 'value':  0},
+                {'name': '浙江', 'value':  18},
+                {'name': '海南', 'value': 0},
+                {'name': '湖北', 'value':  4},
+                {'name': '湖南', 'value':  5},
+                {'name': '甘肃', 'value':  0},
+                {'name': '福建', 'value':  8},
+                {'name': '西藏', 'value': 0},
+                {'name': '贵州', 'value':  0},
+                {'name': '辽宁', 'value':  1},
+                {'name': '重庆', 'value':  1},
+                {'name': '陕西', 'value':  0},
+                {'name': '青海', 'value':  0},
+                {'name': '黑龙江', 'value': 0}
+              ]
+          }
+      ]
+  };
+
+  seizureLoc.setOption(option);
 };
