@@ -7,9 +7,17 @@
       .center{
         display: flex; flex-direction: column; justify-content: center; align-items: center;
       }
+      .row{
+        display: flex;
+        flex-direction: row;
+      }
       .chart {
         width: 600px;
         height: 500px;
+      }
+      .chart-md {
+        width: 500px;
+        height: 420px;
       }
     </style>
   </head>
@@ -19,7 +27,10 @@
       <div class="chart" id="choropleth-map1"></div>
       <div class="chart" id="choropleth-map2"></div>
       <div class="chart" id="scatter"></div>
-      <div class="chart" id="scatter-court"></div>
+      <div class="row">
+        <div class="chart-md" id="scatter-court"></div>
+        <div class="chart-md" id="scatter-court-all"></div>        
+      </div>
       <div class="chart" id="seizure-locations"></div>
       <div class="chart" id="seizure-da-bar"></div>
     </div>

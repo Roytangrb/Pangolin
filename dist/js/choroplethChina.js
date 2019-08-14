@@ -4,11 +4,13 @@ var map1 = echarts.init(document.getElementById('choropleth-map1'));
 var map2 = echarts.init(document.getElementById('choropleth-map2'));
 var hosScatter = echarts.init(document.getElementById('scatter'));
 var courtScatter = echarts.init(document.getElementById('scatter-court'))
+var courtAllScatter = echarts.init(document.getElementById('scatter-court-all'))
 var seizureLoc = echarts.init(document.getElementById('seizure-locations'))
 map1.showLoading();
 map2.showLoading();
 hosScatter.showLoading();
 courtScatter.showLoading();
+courtAllScatter.showLoading();
 seizureLoc.showLoading();
 
 fetch('assets/chinageo.json')
@@ -18,6 +20,7 @@ fetch('assets/chinageo.json')
       render2()
       fetchScatterData()
       fetchCourtScatterData()
+      fetchCourtScatterAllData()
       renderSeizureLoc()
   })
 
@@ -34,6 +37,14 @@ function fetchCourtScatterData(){
       .then(res => res.json())
       .then(data => {
         renderCourtScatter(data)
+      })
+}
+
+function fetchCourtScatterAllData(){
+    fetch('assets/lnglat_court_loc_all.json')
+      .then(res => res.json())
+      .then(data => {
+        renderCourtAllScatter(data)
       })
 }
 
@@ -121,7 +132,6 @@ function render1 (geo) {
 
     map1.setOption(option);
 };
-
 
 function render2 () {
   map2.hideLoading();
@@ -265,10 +275,10 @@ function renderCourtScatter (data) {
   
     option = {
         title: {
-            text: 'Intances of court judgement related to pangolin consumption',
+            text: 'Intances of court judgement \nrelated to pangolin consumption',
             subtext: 'Total: 91 Courts Addresses',
             sublink: '',
-            left: 'right'
+            left: 'left'
         },
         tooltip: {
             trigger: 'item',
@@ -305,6 +315,54 @@ function renderCourtScatter (data) {
     };
   
     courtScatter.setOption(option);
+};
+
+function renderCourtAllScatter (data) {
+    //https://echarts.baidu.com/blog/2016/04/28/echarts-map-tutorial.html
+    courtAllScatter.hideLoading();
+  
+    option = {
+        title: {
+            text: 'Intances of court judgement',
+            subtext: 'Total: 388 Courts Addresses',
+            sublink: '',
+            left: 'left'
+        },
+        tooltip: {
+            trigger: 'item',
+            showDelay: 0,
+            transitionDuration: 0.2,
+            formatter: function (params) {
+                return params.name
+            }
+        },
+        toolbox: {
+            show: false,
+        },
+        geo: {
+            map: 'China',
+            roam: true,
+            itemStyle: {          // 定义样式
+                normal: {         // 普通状态下的样式
+                    areaColor: '#323c48',
+                    borderColor: '#111'
+                },
+                emphasis: {         // 高亮状态下的样式
+                    areaColor: '#2a333d'
+                }
+            },
+        },
+
+        series: [{
+            name: 'court',
+            type: 'scatter',
+            coordinateSystem: 'geo',
+            symbolSize: 5,
+            data: data
+        }]
+    };
+  
+    courtAllScatter.setOption(option);
 };
 
 function renderSeizureLoc () {
