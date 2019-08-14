@@ -7,7 +7,7 @@
       .center{
         display: flex; flex-direction: column; justify-content: center; align-items: center;
       }
-      #choropleth-map1, #choropleth-map2, #scatter, #scatter-court, #seizure-locations{
+      .chart {
         width: 600px;
         height: 500px;
       }
@@ -16,13 +16,15 @@
 
   <body>
     <div class="center">
-      <div id="choropleth-map1"></div>
-      <div id="choropleth-map2"></div>
-      <div id="scatter"></div>
-      <div id="scatter-court"></div>
-      <div id="seizure-locations"></div>
+      <div class="chart" id="choropleth-map1"></div>
+      <div class="chart" id="choropleth-map2"></div>
+      <div class="chart" id="scatter"></div>
+      <div class="chart" id="scatter-court"></div>
+      <div class="chart" id="seizure-locations"></div>
+      <div class="chart" id="seizure-da-bar"></div>
     </div>
     <script src="js/echarts.min.js"></script>
     <script src="js/choroplethChina.js"></script>
+    <script src="js/seizures.js"></script>
   </body>
 </html>
