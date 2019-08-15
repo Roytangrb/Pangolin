@@ -6,14 +6,16 @@ var hosScatter = echarts.init(document.getElementById('scatter'));
 var courtScatter = echarts.init(document.getElementById('scatter-court'))
 var courtAllScatter = echarts.init(document.getElementById('scatter-court-all'))
 var seizureLoc = echarts.init(document.getElementById('seizure-locations'))
-var seizureLocByTerm = echarts.init(document.getElementById('seizure-locations-by-term'))
+var seizureLocByParts = echarts.init(document.getElementById('seizure-locations-by-part'))
+var seizureLocByTerms = echarts.init(document.getElementById('seizure-locations-by-term'))
 map1.showLoading();
 map2.showLoading();
 hosScatter.showLoading();
 courtScatter.showLoading();
 courtAllScatter.showLoading();
 seizureLoc.showLoading();
-seizureLocByTerm.showLoading()
+seizureLocByParts.showLoading()
+seizureLocByTerms.showLoading()
 
 fetch('assets/chinageo.json')
   .then(res => res.json())
@@ -25,7 +27,8 @@ fetch('assets/chinageo.json')
       fetchCourtScatterData()
       fetchCourtScatterAllData()
       renderSeizureLoc()
-      renderSeizureLocByTerm()
+      renderSeizureLocByParts()
+      renderSeizureLocByTerms()
   })
 
 function fetchScatterData(){
@@ -449,8 +452,8 @@ function renderSeizureLoc () {
   seizureLoc.setOption(option);
 };
 
-function renderSeizureLocByTerm () {
-  seizureLocByTerm.hideLoading();
+function renderSeizureLocByParts () {
+  seizureLocByParts.hideLoading();
 
   option = {
       title: {
@@ -558,5 +561,115 @@ function renderSeizureLocByTerm () {
       ]
   };
 
-  seizureLocByTerm.setOption(option);
+  seizureLocByParts.setOption(option);
+};
+
+function renderSeizureLocByTerms () {
+  seizureLocByTerms.hideLoading();
+
+  option = {
+      title: {
+          text: 'Seizures locations By Term',
+          subtext: '',
+          sublink: '',
+          left: 'right'
+      },
+      tooltip: {
+          trigger: 'item',
+          showDelay: 0,
+          transitionDuration: 0.2,
+          formatter: function (params) {
+              return params.name + ': ' + params.value;
+          }
+      },
+      visualMap: {
+          left: 'right',
+          min: 0,
+          max: 48,
+          inRange: {
+              color: ['#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+          },
+          text:['Max','Min'],           // 文本，默认为数值文本
+          calculable: true
+      },
+      toolbox: {
+          show: false,
+      },
+      legend: {
+        data: ['scale','meat', 'products', 'claw', 'skin'],
+        left: 'left',
+        orient: 'vertical',
+        selectedMode: 'multiple',
+        selected: {
+          'scale': true,'meat': false, 'products': false, 'claw': false, 'skin': false
+        }
+      },
+      series: [
+          {
+              name: 'scale',
+              type: 'map',
+              map: 'China',
+              showLegendSymbol: false,
+              data:[
+                {"name": "安徽", "value": 2},
+                {"name": "重庆", "value": 1},
+                {"name": "福建", "value": 3},
+                {"name": "广东", "value": 5},
+                {"name": "广西", "value": 3},
+                {"name": "湖北", "value": 2},
+                {"name": "四川", "value": 2},
+                {"name": "云南", "value": 48},
+                {"name": "浙江", "value": 6}
+              ]
+          },
+          {
+            name: 'meat',
+            type: 'map',
+            map: 'China',
+            showLegendSymbol: false,
+            data: [
+              {"name": "重庆", "value": 1},
+              {"name": "福建", "value": 1},
+              {"name": "广东", "value": 1},
+              {"name": "广西", "value": 1},
+              {"name": "吉林", "value": 1},
+              {"name": "云南", "value": 2},
+              {"name": "浙江", "value": 3}
+            ]
+          },
+          {
+            name: 'products',
+            type: 'map',
+            map: 'China',
+            showLegendSymbol: false,
+            data: [
+              {"name": "湖南", "value": 1},
+              {"name": "云南", "value": 1},
+              {"name": "浙江", "value": 1}
+            ]
+          },
+          {
+            name: 'claw',
+            type: 'map',
+            map: 'China',
+            showLegendSymbol: false,
+            data: [
+              {"name": "内蒙古", "value": 2},
+              {"name": "云南", "value": 1}
+            ]
+          },
+          {
+            name: 'skin',
+            type: 'map',
+            map: 'China',
+            showLegendSymbol: false,
+            data: [
+              {"name": "辽宁", "value": 1},
+              {"name": "云南", "value": 3}
+            ]
+          }
+      ]
+  };
+
+  seizureLocByTerms.setOption(option);
 };
