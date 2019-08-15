@@ -6,22 +6,26 @@ var hosScatter = echarts.init(document.getElementById('scatter'));
 var courtScatter = echarts.init(document.getElementById('scatter-court'))
 var courtAllScatter = echarts.init(document.getElementById('scatter-court-all'))
 var seizureLoc = echarts.init(document.getElementById('seizure-locations'))
+var seizureLocByTerm = echarts.init(document.getElementById('seizure-locations-by-term'))
 map1.showLoading();
 map2.showLoading();
 hosScatter.showLoading();
 courtScatter.showLoading();
 courtAllScatter.showLoading();
 seizureLoc.showLoading();
+seizureLocByTerm.showLoading()
 
 fetch('assets/chinageo.json')
   .then(res => res.json())
   .then(json => {
-      render1(json) //register map as China
+      echarts.registerMap('China', json, {});//register map as China
+      render1()
       render2()
       fetchScatterData()
       fetchCourtScatterData()
       fetchCourtScatterAllData()
       renderSeizureLoc()
+      renderSeizureLocByTerm()
   })
 
 function fetchScatterData(){
@@ -48,10 +52,8 @@ function fetchCourtScatterAllData(){
       })
 }
 
-function render1 (geo) {
+function render1 () {
     map1.hideLoading();
-
-    echarts.registerMap('China', geo, {});
     option = {
         title: {
             text: 'Pharmaceutical Companies with Products from Pangolins',
@@ -92,7 +94,6 @@ function render1 (geo) {
             {
                 name: '',
                 type: 'map',
-                roam: true,
                 map: 'China',
                 itemStyle:{
                     emphasis:{label:{show:true}}
@@ -176,7 +177,6 @@ function render2 () {
           {
               name: '',
               type: 'map',
-              roam: true,
               map: 'China',
               itemStyle:{
                   emphasis:{label:{show:true}}
@@ -245,7 +245,6 @@ function renderHosScatter (data) {
         },
         geo: {
             map: 'China',
-            roam: true,
             itemStyle: {					// 定义样式
                 normal: {					// 普通状态下的样式
                     areaColor: '#323c48',
@@ -293,7 +292,6 @@ function renderCourtScatter (data) {
         },
         geo: {
             map: 'China',
-            roam: true,
             itemStyle: {          // 定义样式
                 normal: {         // 普通状态下的样式
                     areaColor: '#323c48',
@@ -341,7 +339,6 @@ function renderCourtAllScatter (data) {
         },
         geo: {
             map: 'China',
-            roam: true,
             itemStyle: {          // 定义样式
                 normal: {         // 普通状态下的样式
                     areaColor: '#323c48',
@@ -373,7 +370,7 @@ function renderSeizureLoc () {
           text: 'Seizures locations',
           subtext: 'Total: 144 Seizures',
           sublink: 'Source: court judgements from 2017-2019',
-          left: 'right'
+          left: 'left'
       },
       tooltip: {
           trigger: 'item',
@@ -386,7 +383,7 @@ function renderSeizureLoc () {
       visualMap: {
           left: 'right',
           min: 0,
-          max: 63,
+          max: 65,
           inRange: {
               color: ['#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
           },
@@ -406,9 +403,8 @@ function renderSeizureLoc () {
       },
       series: [
           {
-              name: '',
+              name: 'all',
               type: 'map',
-              roam: true,
               map: 'China',
               itemStyle:{
                   emphasis:{label:{show:true}}
@@ -446,9 +442,121 @@ function renderSeizureLoc () {
                 {'name': '青海', 'value':  0},
                 {'name': '黑龙江', 'value': 0}
               ]
-          }
+          },
       ]
   };
 
   seizureLoc.setOption(option);
+};
+
+function renderSeizureLocByTerm () {
+  seizureLocByTerm.hideLoading();
+
+  option = {
+      title: {
+          text: 'Seizures locations By Form',
+          subtext: '',
+          sublink: '',
+          left: 'right'
+      },
+      tooltip: {
+          trigger: 'item',
+          showDelay: 0,
+          transitionDuration: 0.2,
+          formatter: function (params) {
+              return params.name + ': ' + params.value;
+          }
+      },
+      visualMap: {
+          left: 'right',
+          min: 0,
+          max: 50,
+          inRange: {
+              color: ['#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+          },
+          text:['Max','Min'],           // 文本，默认为数值文本
+          calculable: true
+      },
+      toolbox: {
+          show: false,
+      },
+      legend: {
+        data: ['dead','frozen', 'live', 'parts'],
+        left: 'left',
+        orient: 'vertical',
+        selectedMode: 'multiple',
+        selected: {
+          'dead': true,'frozen': false, 'live': false, 'parts': false
+        }
+      },
+      series: [
+          {
+              name: 'dead',
+              type: 'map',
+              map: 'China',
+              showLegendSymbol: false,
+              data:[
+                {"name": "福建", "value": 1}, 
+                {"name": "广东", "value": 5}, 
+                {"name": "广西", "value": 2}, 
+                {"name": "云南", "value": 3}
+              ]
+          },
+          {
+            name: 'frozen',
+            type: 'map',
+            map: 'China',
+            showLegendSymbol: false,
+            data: [
+              {"name": "福建", "value": 2},
+              {"name": "广东", "value": 1},
+              {"name": "广西", "value": 6},
+              {"name": "河北", "value": 1},
+              {"name": "湖北", "value": 1},
+              {"name": "湖南", "value": 3},
+              {"name": "江西", "value": 1},
+              {"name": "云南", "value": 4},
+              {"name": "浙江", "value": 6}
+            ]
+          },
+          {
+            name: 'live',
+            type: 'map',
+            map: 'China',
+            showLegendSymbol: false,
+            data: [
+              {"name": "福建", "value": 2},
+              {"name": "广东", "value": 10},
+              {"name": "广西", "value": 8},
+              {"name": "湖北", "value": 1},
+              {"name": "湖南", "value": 2},
+              {"name": "云南", "value": 11},
+              {"name": "浙江", "value": 6}
+            ]
+          },
+          {
+            name: 'parts',
+            type: 'map',
+            map: 'China',
+            showLegendSymbol: false,
+            data: [
+              {"name": "安徽", "value": 2}, 
+              {"name": "重庆", "value": 1}, 
+              {"name": "福建", "value": 3}, 
+              {"name": "广东", "value": 6}, 
+              {"name": "广西", "value": 4}, 
+              {"name": "湖北", "value": 2}, 
+              {"name": "湖南", "value": 1}, 
+              {"name": "吉林", "value": 1}, 
+              {"name": "辽宁", "value": 1}, 
+              {"name": "内蒙古", "value": 2}, 
+              {"name": "四川", "value": 2}, 
+              {"name": "云南", "value": 50}, 
+              {"name": "浙江", "value": 9}
+            ]
+          }
+      ]
+  };
+
+  seizureLocByTerm.setOption(option);
 };
