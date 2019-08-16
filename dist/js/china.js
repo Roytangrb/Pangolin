@@ -1,21 +1,18 @@
 //https://echarts.apache.org/examples/en/editor.html?c=map-usa
-
-var map1 = echarts.init(document.getElementById('choropleth-map1'));
-var map2 = echarts.init(document.getElementById('choropleth-map2'));
-var hosScatter = echarts.init(document.getElementById('scatter'));
-var courtScatter = echarts.init(document.getElementById('scatter-court'))
-var courtAllScatter = echarts.init(document.getElementById('scatter-court-all'))
-var seizureLoc = echarts.init(document.getElementById('seizure-locations'))
-var seizureLocByParts = echarts.init(document.getElementById('seizure-locations-by-part'))
-var seizureLocByTerms = echarts.init(document.getElementById('seizure-locations-by-term'))
-map1.showLoading();
-map2.showLoading();
-hosScatter.showLoading();
-courtScatter.showLoading();
-courtAllScatter.showLoading();
-seizureLoc.showLoading();
-seizureLocByParts.showLoading()
-seizureLocByTerms.showLoading()
+const initChart = id => {
+  const chart = echarts.init(document.getElementById(id))
+  chart.showLoading()
+  return chart
+}
+var map1 = initChart('choropleth-map1')
+var map2 = initChart('choropleth-map2')
+var hosScatter = initChart('scatter')
+var courtScatter = initChart('scatter-court')
+var courtAllScatter = initChart('scatter-court-all')
+var seizureLoc = initChart('seizure-locations')
+var seizureLocByParts = initChart('seizure-locations-by-part')
+var seizureLocByTerms = initChart('seizure-locations-by-term')
+var seizureItemWorth = initChart('seizure-item-worth')
 
 fetch('assets/chinageo.json')
   .then(res => res.json())
@@ -29,6 +26,7 @@ fetch('assets/chinageo.json')
       renderSeizureLoc()
       renderSeizureLocByParts()
       renderSeizureLocByTerms()
+      renderSeizureItemWorth()
   })
 
 function fetchScatterData(){
@@ -672,4 +670,59 @@ function renderSeizureLocByTerms () {
   };
 
   seizureLocByTerms.setOption(option);
+};
+
+function renderSeizureItemWorth () {
+    seizureItemWorth.hideLoading();
+    option = {
+        title: {
+            text: 'Worth of Pangolin Seizures (in CNY)',
+            subtext: 'Total: 65 valid cases',
+            sublink: '',
+            left: 'right'
+        },
+        tooltip: {
+            trigger: 'item',
+            showDelay: 0,
+            transitionDuration: 0.2,
+            formatter: function (params) {
+                return params.name + ': ' + params.value;
+            }
+        },
+        visualMap: {
+            left: 'right',
+            min: 0,
+            max: 2966379,
+            inRange: {
+                color: ['#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+            },
+            text:['Max','Min'],           // 文本，默认为数值文本
+            calculable: true
+        },
+        toolbox: {
+            show: false,
+        },
+        series: [
+            {
+                name: '',
+                type: 'map',
+                map: 'China',
+                data:[
+                  {"name": "安徽", "value": 12446},
+                  {"name": "福建", "value": 11690},
+                  {"name": "广东", "value": 243152},
+                  {"name": "广西", "value": 2093},
+                  {"name": "河北", "value": 26720},
+                  {"name": "湖北", "value": 5888},
+                  {"name": "湖南", "value": 139020},
+                  {"name": "辽宁", "value": 1336},
+                  {"name": "内蒙古", "value": 668},
+                  {"name": "云南", "value": 2966379},
+                  {"name": "浙江", "value": 19385}
+                ]
+            }
+        ]
+    };
+
+    seizureItemWorth.setOption(option);
 };
