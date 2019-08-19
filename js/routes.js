@@ -27,8 +27,10 @@ function renderchinaFromto(data){
 	chinaFromto.hideLoading()
 
 	option = {
-	    progressive: 20000,
 	    backgroundColor: '#111',
+	    tooltip : {
+        trigger: 'item'
+	    },
 	    geo: {
 	        center: [103.81907349, 36.5617654559],
 	        zoom: 4,
