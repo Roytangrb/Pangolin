@@ -1,21 +1,18 @@
 //https://echarts.apache.org/examples/en/editor.html?c=map-usa
-
-var map1 = echarts.init(document.getElementById('choropleth-map1'));
-var map2 = echarts.init(document.getElementById('choropleth-map2'));
-var hosScatter = echarts.init(document.getElementById('scatter'));
-var courtScatter = echarts.init(document.getElementById('scatter-court'))
-var courtAllScatter = echarts.init(document.getElementById('scatter-court-all'))
-var seizureLoc = echarts.init(document.getElementById('seizure-locations'))
-var seizureLocByParts = echarts.init(document.getElementById('seizure-locations-by-part'))
-var seizureLocByTerms = echarts.init(document.getElementById('seizure-locations-by-term'))
-map1.showLoading();
-map2.showLoading();
-hosScatter.showLoading();
-courtScatter.showLoading();
-courtAllScatter.showLoading();
-seizureLoc.showLoading();
-seizureLocByParts.showLoading()
-seizureLocByTerms.showLoading()
+const initChart = id => {
+  const chart = echarts.init(document.getElementById(id))
+  chart.showLoading()
+  return chart
+}
+var map1 = initChart('choropleth-map1')
+var map2 = initChart('choropleth-map2')
+var hosScatter = initChart('scatter')
+var consumption = initChart('seizure-consumption')
+var courtAll = initChart('seizure-court-all')
+var seizureLoc = initChart('seizure-locations')
+var seizureLocByParts = initChart('seizure-locations-by-part')
+var seizureLocByTerms = initChart('seizure-locations-by-term')
+var seizureItemWorth = initChart('seizure-item-worth')
 
 fetch('assets/chinageo.json')
   .then(res => res.json())
@@ -24,11 +21,12 @@ fetch('assets/chinageo.json')
       render1()
       render2()
       fetchScatterData()
-      fetchCourtScatterData()
-      fetchCourtScatterAllData()
+      renderConsumption()
+      renderAllCourtLoc()
       renderSeizureLoc()
       renderSeizureLocByParts()
       renderSeizureLocByTerms()
+      renderSeizureItemWorth()
   })
 
 function fetchScatterData(){
@@ -36,22 +34,6 @@ function fetchScatterData(){
       .then(res => res.json())
       .then(data => {
         renderHosScatter(data)
-      })
-}
-
-function fetchCourtScatterData(){
-    fetch('assets/lnglat_court_itslaw.json')
-      .then(res => res.json())
-      .then(data => {
-        renderCourtScatter(data)
-      })
-}
-
-function fetchCourtScatterAllData(){
-    fetch('assets/lnglat_court_loc_all.json')
-      .then(res => res.json())
-      .then(data => {
-        renderCourtAllScatter(data)
       })
 }
 
@@ -271,14 +253,14 @@ function renderHosScatter (data) {
     hosScatter.setOption(option);
 };
 
-function renderCourtScatter (data) {
+function renderConsumption () {
     //https://echarts.baidu.com/blog/2016/04/28/echarts-map-tutorial.html
-    courtScatter.hideLoading();
+    consumption.hideLoading();
   
     option = {
         title: {
             text: 'Intances of court judgement \nrelated to pangolin consumption',
-            subtext: 'Total: 91 Courts Addresses',
+            subtext: 'Total: 91 Courts cases',
             sublink: '',
             left: 'left'
         },
@@ -287,45 +269,78 @@ function renderCourtScatter (data) {
             showDelay: 0,
             transitionDuration: 0.2,
             formatter: function (params) {
-                return params.name
+                return params.name + ': ' + params.value;
             }
         },
         toolbox: {
             show: false,
         },
-        geo: {
-            map: 'China',
-            itemStyle: {          // 定义样式
-                normal: {         // 普通状态下的样式
-                    areaColor: '#323c48',
-                    borderColor: '#111'
-                },
-                emphasis: {         // 高亮状态下的样式
-                    areaColor: '#2a333d'
-                }
-            },
-        },
-
-        series: [{
-            name: 'court',
-            type: 'scatter',
-            coordinateSystem: 'geo',
-            symbolSize: 5,
-            data: data
-        }]
+        visualMap: {
+          left: 'right',
+          min: 0,
+          max: 32,
+          inRange: {
+              color: ['#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+          },
+          text:['Max','Min'],           // 文本，默认为数值文本
+          calculable: true
+      },
+      series: [
+          {
+              name: '',
+              type: 'map',
+              map: 'China',
+              itemStyle:{
+                  emphasis:{label:{show:true}}
+              },
+              data:[
+                  {'name': '内蒙古', 'value': 0},
+                  {'name': '北京', 'value': 0},
+                  {'name': '吉林', 'value': 0},
+                  {'name': '四川', 'value': 0},
+                  {'name': '天津', 'value': 0},
+                  {'name': '宁夏', 'value': 0},
+                  {'name': '安徽', 'value': 0},
+                  {'name': '山东', 'value': 0},
+                  {'name': '山西', 'value': 0},
+                  {'name': '新疆', 'value': 0},
+                  {'name': '河北', 'value': 0},
+                  {'name': '湖北', 'value': 0},
+                  {'name': '甘肃', 'value': 0},
+                  {'name': '西藏', 'value': 0},
+                  {'name': '贵州', 'value': 0},
+                  {'name': '辽宁', 'value': 0},
+                  {'name': '陕西', 'value': 0},
+                  {'name': '青海', 'value': 0},
+                  {'name': '黑龙江', 'value': 0},
+                  {'name': '上海', 'value': 1},
+                  {'name': '云南', 'value': 9},
+                  {'name': '广东', 'value': 19},
+                  {'name': '广西', 'value': 6},
+                  {'name': '江苏', 'value': 2},
+                  {'name': '江西', 'value': 1},
+                  {'name': '河南', 'value': 1},
+                  {'name': '浙江', 'value': 32},
+                  {'name': '海南', 'value': 1},
+                  {'name': '湖南', 'value': 12},
+                  {'name': '福建', 'value': 6},
+                  {'name': '重庆', 'value': 1}
+              ]
+          }
+      ]
     };
   
-    courtScatter.setOption(option);
+    consumption.setOption(option);
 };
 
-function renderCourtAllScatter (data) {
+function renderAllCourtLoc (data) {
     //https://echarts.baidu.com/blog/2016/04/28/echarts-map-tutorial.html
-    courtAllScatter.hideLoading();
+    courtAll.hideLoading();
   
     option = {
         title: {
             text: 'Intances of court judgement',
-            subtext: 'Total: 388 Courts Addresses',
+            subtext: 'Total: 388 Courts cases',
             sublink: '',
             left: 'left'
         },
@@ -334,35 +349,68 @@ function renderCourtAllScatter (data) {
             showDelay: 0,
             transitionDuration: 0.2,
             formatter: function (params) {
-                return params.name
+                return params.name + ': ' + params.value;
             }
         },
         toolbox: {
             show: false,
         },
-        geo: {
-            map: 'China',
-            itemStyle: {          // 定义样式
-                normal: {         // 普通状态下的样式
-                    areaColor: '#323c48',
-                    borderColor: '#111'
-                },
-                emphasis: {         // 高亮状态下的样式
-                    areaColor: '#2a333d'
-                }
-            },
-        },
-
-        series: [{
-            name: 'court',
-            type: 'scatter',
-            coordinateSystem: 'geo',
-            symbolSize: 5,
-            data: data
-        }]
+        visualMap: {
+          left: 'right',
+          min: 0,
+          max: 110,
+          inRange: {
+              color: ['#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+          },
+          text:['Max','Min'],           // 文本，默认为数值文本
+          calculable: true
+      },
+      series: [
+          {
+              name: '',
+              type: 'map',
+              map: 'China',
+              itemStyle:{
+                  emphasis:{label:{show:true}}
+              },
+              data:[
+                {'name': '天津', 'value': 0},
+                {'name': '宁夏', 'value':  0},
+                {'name': '新疆', 'value':  0},
+                {'name': '甘肃', 'value':  0},
+                {'name': '陕西', 'value':  0},
+                {'name': '青海', 'value':  0},
+                {'name': '黑龙江', 'value': 0},
+                {'name': '山西', 'value':  0},
+                 {'name': '上海', 'value': 2},
+                 {'name': '云南', 'value': 110},
+                 {'name': '内蒙古', 'value': 3},
+                 {'name': '北京', 'value': 2},
+                 {'name': '吉林', 'value': 1},
+                 {'name': '四川', 'value': 3},
+                 {'name': '安徽', 'value': 7},
+                 {'name': '山东', 'value': 1},
+                 {'name': '广东', 'value': 56},
+                 {'name': '广西', 'value': 45},
+                 {'name': '江苏', 'value': 9},
+                 {'name': '江西', 'value': 6},
+                 {'name': '河北', 'value': 3},
+                 {'name': '河南', 'value': 8},
+                 {'name': '浙江', 'value': 74},
+                 {'name': '海南', 'value': 2},
+                 {'name': '湖北', 'value': 3},
+                 {'name': '湖南', 'value': 24},
+                 {'name': '福建', 'value': 23},
+                 {'name': '西藏', 'value': 1},
+                 {'name': '贵州', 'value': 2},
+                 {'name': '辽宁', 'value': 2},
+                 {'name': '重庆', 'value': 1}
+              ]
+          }
+      ]
     };
   
-    courtAllScatter.setOption(option);
+    courtAll.setOption(option);
 };
 
 function renderSeizureLoc () {
@@ -395,14 +443,6 @@ function renderSeizureLoc () {
       },
       toolbox: {
           show: false,
-          //orient: 'vertical',
-          // left: 'left',
-          // top: 'top',
-          // feature: {
-          //     dataView: {readOnly: false},
-          //     restore: {},
-          //     saveAsImage: {}
-          // }
       },
       series: [
           {
@@ -672,4 +712,59 @@ function renderSeizureLocByTerms () {
   };
 
   seizureLocByTerms.setOption(option);
+};
+
+function renderSeizureItemWorth () {
+    seizureItemWorth.hideLoading();
+    option = {
+        title: {
+            text: 'Worth of Pangolin Seizures (in CNY)',
+            subtext: 'Total: 65 valid cases',
+            sublink: '',
+            left: 'right'
+        },
+        tooltip: {
+            trigger: 'item',
+            showDelay: 0,
+            transitionDuration: 0.2,
+            formatter: function (params) {
+                return params.name + ': ' + params.value;
+            }
+        },
+        visualMap: {
+            left: 'right',
+            min: 0,
+            max: 2966379,
+            inRange: {
+                color: ['#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+            },
+            text:['Max','Min'],           // 文本，默认为数值文本
+            calculable: true
+        },
+        toolbox: {
+            show: false,
+        },
+        series: [
+            {
+                name: '',
+                type: 'map',
+                map: 'China',
+                data:[
+                  {"name": "安徽", "value": 12446},
+                  {"name": "福建", "value": 11690},
+                  {"name": "广东", "value": 243152},
+                  {"name": "广西", "value": 2093},
+                  {"name": "河北", "value": 26720},
+                  {"name": "湖北", "value": 5888},
+                  {"name": "湖南", "value": 139020},
+                  {"name": "辽宁", "value": 1336},
+                  {"name": "内蒙古", "value": 668},
+                  {"name": "云南", "value": 2966379},
+                  {"name": "浙江", "value": 19385},
+                ]
+            }
+        ]
+    };
+
+    seizureItemWorth.setOption(option);
 };
