@@ -443,14 +443,6 @@ function renderSeizureLoc () {
       },
       toolbox: {
           show: false,
-          //orient: 'vertical',
-          // left: 'left',
-          // top: 'top',
-          // feature: {
-          //     dataView: {readOnly: false},
-          //     restore: {},
-          //     saveAsImage: {}
-          // }
       },
       series: [
           {
@@ -768,7 +760,7 @@ function renderSeizureItemWorth () {
                   {"name": "辽宁", "value": 1336},
                   {"name": "内蒙古", "value": 668},
                   {"name": "云南", "value": 2966379},
-                  {"name": "浙江", "value": 19385}
+                  {"name": "浙江", "value": 19385},
                 ]
             }
         ]
