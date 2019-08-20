@@ -18,7 +18,6 @@ fetch('assets/chinageo.json')
   .then(res => res.json())
   .then(json => {
       echarts.registerMap('China', json, {});//register map as China
-      console.log(echarts.getMap('China'))
       render1()
       render2()
       fetchScatterData()
