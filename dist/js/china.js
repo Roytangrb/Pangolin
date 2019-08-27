@@ -734,7 +734,7 @@ function renderSeizureItemWorth () {
         visualMap: {
             left: 'right',
             min: 0,
-            max: 2966379,
+            max: 243152 + 3572464, // added a missed guangdong case, more to come
             inRange: {
                 color: ['#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
             },
@@ -752,7 +752,7 @@ function renderSeizureItemWorth () {
                 data:[
                   {"name": "安徽", "value": 12446},
                   {"name": "福建", "value": 11690},
-                  {"name": "广东", "value": 243152},
+                  {"name": "广东", "value": 243152 + 3572464}, // added a missed guangdong case, more to come
                   {"name": "广西", "value": 2093},
                   {"name": "河北", "value": 26720},
                   {"name": "湖北", "value": 5888},
