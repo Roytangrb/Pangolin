@@ -8,6 +8,7 @@ var map1 = initChart('choropleth-map1')
 var map2 = initChart('choropleth-map2')
 var hosScatter = initChart('scatter')
 var consumption = initChart('seizure-consumption')
+var medicine = initChart('seizure-medicine')
 var courtAll = initChart('seizure-court-all')
 var seizureLoc = initChart('seizure-locations')
 var seizureLocByParts = initChart('seizure-locations-by-part')
@@ -22,6 +23,7 @@ fetch('assets/chinageo.json')
       render2()
       fetchScatterData()
       renderConsumption()
+      renderMedicine()
       renderAllCourtLoc()
       renderSeizureLoc()
       renderSeizureLocByParts()
@@ -331,6 +333,84 @@ function renderConsumption () {
     };
   
     consumption.setOption(option);
+};
+
+function renderMedicine () {
+    medicine.hideLoading();
+  
+    option = {
+        title: {
+            text: 'Intances of court judgement \nrelated to pangolin medecine',
+            subtext: 'Total: 36/406 Courts cases',
+            sublink: '',
+            left: 'left'
+        },
+        tooltip: {
+            trigger: 'item',
+            showDelay: 0,
+            transitionDuration: 0.2,
+            formatter: function (params) {
+                return params.name + ': ' + params.value;
+            }
+        },
+        toolbox: {
+            show: false,
+        },
+        visualMap: {
+          left: 'right',
+          min: 0,
+          max: 13,
+          inRange: {
+              color: ['#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+          },
+          text:['Max','Min'],           // 文本，默认为数值文本
+          calculable: true
+      },
+      series: [
+          {
+              name: '',
+              type: 'map',
+              map: 'China',
+              itemStyle:{
+                  emphasis:{label:{show:true}}
+              },
+              data:[{'name': '上海', 'value': 1},
+                 {'name': '云南', 'value': 13},
+                 {'name': '北京', 'value': 1},
+                 {'name': '四川', 'value': 3},
+                 {'name': '安徽', 'value': 4},
+                 {'name': '广东', 'value': 8},
+                 {'name': '广西', 'value': 1},
+                 {'name': '江西', 'value': 3},
+                 {'name': '浙江', 'value': 1},
+                 {'name': '西藏', 'value': 1},
+                  {'name': '内蒙古', 'value': 0},
+                  {'name': '吉林', 'value': 0},
+                  {'name': '天津', 'value': 0},
+                  {'name': '宁夏', 'value': 0},
+                  {'name': '山东', 'value': 0},
+                  {'name': '山西', 'value': 0},
+                  {'name': '新疆', 'value': 0},
+                  {'name': '河北', 'value': 0},
+                  {'name': '湖北', 'value': 0},
+                  {'name': '甘肃', 'value': 0},
+                  {'name': '贵州', 'value': 0},
+                  {'name': '辽宁', 'value': 0},
+                  {'name': '陕西', 'value': 0},
+                  {'name': '青海', 'value': 0},
+                  {'name': '黑龙江', 'value': 0},
+                  {'name': '江苏', 'value': 0},
+                  {'name': '河南', 'value': 0},,
+                  {'name': '海南', 'value': 0},
+                  {'name': '湖南', 'value': 0},
+                  {'name': '福建', 'value': 0},
+                  {'name': '重庆', 'value': 0}
+              ]
+          }
+      ]
+    };
+  
+    medicine.setOption(option);
 };
 
 function renderAllCourtLoc (data) {
