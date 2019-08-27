@@ -260,7 +260,7 @@ function renderConsumption () {
     option = {
         title: {
             text: 'Intances of court judgement \nrelated to pangolin consumption',
-            subtext: 'Total: 91 Courts cases',
+            subtext: 'Total: 91/406 Courts cases',
             sublink: '',
             left: 'left'
         },
@@ -340,7 +340,7 @@ function renderAllCourtLoc (data) {
     option = {
         title: {
             text: 'Intances of court judgement',
-            subtext: 'Total: 388 Courts cases',
+            subtext: 'Total: 406 Courts cases',
             sublink: '',
             left: 'left'
         },
@@ -358,7 +358,7 @@ function renderAllCourtLoc (data) {
         visualMap: {
           left: 'right',
           min: 0,
-          max: 110,
+          max: 121,
           inRange: {
               color: ['#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
           },
@@ -373,7 +373,7 @@ function renderAllCourtLoc (data) {
               itemStyle:{
                   emphasis:{label:{show:true}}
               },
-              data:[
+              data:[ //20180827 new 18 云南 11 上海 2 西藏 1 广西 1 广东 3
                 {'name': '天津', 'value': 0},
                 {'name': '宁夏', 'value':  0},
                 {'name': '新疆', 'value':  0},
@@ -382,16 +382,16 @@ function renderAllCourtLoc (data) {
                 {'name': '青海', 'value':  0},
                 {'name': '黑龙江', 'value': 0},
                 {'name': '山西', 'value':  0},
-                 {'name': '上海', 'value': 2},
-                 {'name': '云南', 'value': 110},
+                 {'name': '上海', 'value': 4},
+                 {'name': '云南', 'value': 121},
                  {'name': '内蒙古', 'value': 3},
                  {'name': '北京', 'value': 2},
                  {'name': '吉林', 'value': 1},
                  {'name': '四川', 'value': 3},
                  {'name': '安徽', 'value': 7},
                  {'name': '山东', 'value': 1},
-                 {'name': '广东', 'value': 56},
-                 {'name': '广西', 'value': 45},
+                 {'name': '广东', 'value': 59},
+                 {'name': '广西', 'value': 46},
                  {'name': '江苏', 'value': 9},
                  {'name': '江西', 'value': 6},
                  {'name': '河北', 'value': 3},
@@ -401,7 +401,7 @@ function renderAllCourtLoc (data) {
                  {'name': '湖北', 'value': 3},
                  {'name': '湖南', 'value': 24},
                  {'name': '福建', 'value': 23},
-                 {'name': '西藏', 'value': 1},
+                 {'name': '西藏', 'value': 2},
                  {'name': '贵州', 'value': 2},
                  {'name': '辽宁', 'value': 2},
                  {'name': '重庆', 'value': 1}
@@ -734,7 +734,7 @@ function renderSeizureItemWorth () {
         visualMap: {
             left: 'right',
             min: 0,
-            max: 2966379,
+            max: 243152 + 3572464, // added a missed guangdong case, more to come
             inRange: {
                 color: ['#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
             },
@@ -752,7 +752,7 @@ function renderSeizureItemWorth () {
                 data:[
                   {"name": "安徽", "value": 12446},
                   {"name": "福建", "value": 11690},
-                  {"name": "广东", "value": 243152},
+                  {"name": "广东", "value": 243152 + 3572464}, // added a missed guangdong case, more to come
                   {"name": "广西", "value": 2093},
                   {"name": "河北", "value": 26720},
                   {"name": "湖北", "value": 5888},
