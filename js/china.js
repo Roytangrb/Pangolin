@@ -33,7 +33,7 @@ fetch('assets/chinageo.json')
 
     renderChinaChoropleth({
       chart: initChart('seizure-court-all-scale'),
-      title: 'Scale', 
+      title: 'Intances of court judgement \nrelated to pangolin scale', 
       sub: '2017-2019 163 cases (40%)', 
       data: [{'name': '上海', 'value': 2}, {'name': '云南', 'value': 78}, {'name': '内蒙古', 'value': 1}, {'name': '北京', 'value': 1}, {'name': '吉林', 'value': 1}, {'name': '四川', 'value': 3}, {'name': '安徽', 'value': 6}, {'name': '山东', 'value': 1}, {'name': '广东', 'value': 19}, {'name': '广西', 'value': 6}, {'name': '江苏', 'value': 2}, {'name': '江西', 'value': 2}, {'name': '河北', 'value': 1}, {'name': '河南', 'value': 1}, {'name': '浙江', 'value': 22}, {'name': '湖北', 'value': 1}, {'name': '湖南', 'value': 5}, {'name': '福建', 'value': 5}, {'name': '西藏', 'value': 2}, {'name': '贵州', 'value': 1}, {'name': '辽宁', 'value': 2}, {'name': '重庆', 'value': 1}],
       max: 78
@@ -41,7 +41,7 @@ fetch('assets/chinageo.json')
 
     renderChinaChoropleth({
       chart: initChart('seizure-court-all-live'),
-      title: 'Live', 
+      title: 'Intances of court judgement \nrelated to live pangolin', 
       sub: '2017-2019 171 cases (42%)', 
       data: [{'name': '上海', 'value': 1}, {'name': '云南', 'value': 35}, {'name': '吉林', 'value': 1}, {'name': '广东', 'value': 33}, {'name': '广西', 'value': 26}, {'name': '江苏', 'value': 5}, {'name': '河北', 'value': 1}, {'name': '河南', 'value': 4}, {'name': '浙江', 'value': 40}, {'name': '海南', 'value': 2}, {'name': '湖南', 'value': 7}, {'name': '福建', 'value': 15}, {'name': '贵州', 'value': 1}],
       max: 40
@@ -49,7 +49,7 @@ fetch('assets/chinageo.json')
 
     renderChinaChoropleth({
       chart: initChart('seizure-court-all-dead'),
-      title: 'Dead', 
+      title: 'Intances of court judgement \nrelated to dead pangolin', 
       sub: '2017-2019 143 cases (35%)', 
       data: [{'name': '云南', 'value': 26}, {'name': '吉林', 'value': 1}, {'name': '广东', 'value': 28}, {'name': '广西', 'value': 20}, {'name': '江苏', 'value': 4}, {'name': '江西', 'value': 1}, {'name': '河北', 'value': 2}, {'name': '河南', 'value': 2}, {'name': '浙江', 'value': 37}, {'name': '海南', 'value': 1}, {'name': '湖北', 'value': 1}, {'name': '湖南', 'value': 6}, {'name': '福建', 'value': 13}, {'name': '重庆', 'value': 1}],
       max: 37
@@ -240,6 +240,10 @@ fetch('assets/chinageo.json')
       ],
       max: 48
     })
+
+    renderBar({
+      chart: initChart('seizure-da-bar')
+    })
 })
 
 function renderChinaScatter (obj) {
@@ -394,3 +398,44 @@ function renderChinaChoropleth (obj) {
 
   chart.setOption(option);
 };
+
+function renderBar(obj) {
+  var {chart} = obj
+
+  var option = {
+    title: {
+      text: 'Seizures Detection Agents',
+      subtext: 'Total: 134 cases',
+      sublink: '',
+      left: 'right'
+    },
+    tooltip: {
+      trigger: 'item',
+      showDelay: 0,
+      transitionDuration: 0.2,
+      formatter: function (params) {
+          return params.name + ': ' + params.value;
+      }
+    },
+    xAxis: {
+      type: 'category',
+      data: ['police',
+      'forest \npolice',
+      'frontier \ninspection \nstation',
+      'border \ndefence \nforce',
+      'market \nsupervision \nadministration',
+      'customs',
+      'airport \nsecurity',
+      'traffic n\police']
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [{
+      data: [62, 46, 13, 7, 2, 2, 1, 1],
+      type: 'bar'
+    }]
+  };
+  chart.setOption(option);
+  chart.hideLoading()
+}

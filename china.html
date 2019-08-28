@@ -19,23 +19,33 @@
         width: 500px;
         height: 420px;
       }
+      h3 {
+        font-family: arial, sans-serif;
+        width: 80%;
+        text-align: center;
+        border-bottom: 1px solid #ccc;
+      }
     </style>
   </head>
 
   <body>
     <a href="routes.html">Routes</a>
     <div class="center">
-      <div class="chart" id="med-comp"></div>
+      <h3>Official data</h3>
+      <div class="row">
+        <div class="chart-md" id="scale-stock"></div>
+        <div class="chart-md" id="med-comp"></div>
+      </div>
       <div class="row">
         <div class="chart-md" id="hospital"></div>
         <div class="chart-md" id="hospital-scatter"></div>
       </div>
+      <h3>Seizures (406 Court Cases from 2005 -2019)</h3>
       <div class="row">
-        <div class="chart-md" id="scale-stock"></div>
+        <div class="chart-md" id="seizure-court-all"></div>
+        <div class="chart-md" id="seizure-court-all-scale"></div>          
       </div>
-      <div class="chart" id="seizure-court-all"></div>
       <div class="row">
-        <div class="chart-md" id="seizure-court-all-scale"></div>
         <div class="chart-md" id="seizure-court-all-live"></div>
         <div class="chart-md" id="seizure-court-all-dead"></div>
       </div>
@@ -43,16 +53,20 @@
         <div class="chart-md" id="seizure-consumption"></div>
         <div class="chart-md" id="seizure-medicine"></div>
       </div>
-      <div class="chart" id="seizure-locations"></div>
+      <h3>Seizure details (144 Court Cases from 2017-2019)</h3>
+      <div class="row">
+        <div class="chart-md" id="seizure-locations"></div>
+        <div class="chart-md" id="seizure-item-worth"></div>
+      </div>
       <div class="row">
         <div class="chart-md" id="seizure-locations-by-part"></div>
         <div class="chart-md" id="seizure-locations-by-term"></div>
       </div>
-      <div class="chart" id="seizure-item-worth"></div>
+
+      <h3>Others</h3>
       <div class="chart" id="seizure-da-bar"></div>
     </div>
     <script src="js/echarts.min.js"></script>
     <script src="js/china.js"></script>
-    <script src="js/seizures.js"></script>
   </body>
 </html>
