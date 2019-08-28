@@ -1,4 +1,8 @@
 //https://echarts.apache.org/examples/en/editor.html?c=map-usa
+const fillChinaNA = data => {
+  const provinces = [{'name': '上海', 'value': 0},{'name': '云南', 'value': 0},{'name': '内蒙古', 'value': 0},{'name': '北京', 'value': 0},{'name': '吉林', 'value': 0},{'name': '四川', 'value': 0},{'name': '天津', 'value': 0},{'name': '宁夏', 'value': 0},{'name': '安徽', 'value': 0},{'name': '山东', 'value': 0},{'name': '山西', 'value': 0},{'name': '广东', 'value': 0},{'name': '广西', 'value': 0},{'name': '新疆', 'value': 0},{'name': '江苏', 'value': 0},{'name': '江西', 'value': 0},{'name': '河北', 'value': 0},{'name': '河南', 'value': 0},{'name': '浙江', 'value': 0},{'name': '海南', 'value': 0},{'name': '湖北', 'value': 0},{'name': '湖南', 'value': 0},{'name': '甘肃', 'value': 0},{'name': '福建', 'value': 0},{'name': '西藏', 'value': 0},{'name': '贵州', 'value': 0},{'name': '辽宁', 'value': 0},{'name': '重庆', 'value': 0},{'name': '陕西', 'value': 0},{'name': '青海', 'value': 0},{'name': '黑龙江', 'value': 0}]  
+  return provinces.map(province=>(data.find(d=> province.name == d.name) || province))
+}
 const initChart = id => {
   const chart = echarts.init(document.getElementById(id))
   chart.showLoading()
@@ -6,6 +10,7 @@ const initChart = id => {
 }
 var map1 = initChart('choropleth-map1')
 var map2 = initChart('choropleth-map2')
+var scaleStock = initChart('scale-stock')
 var hosScatter = initChart('scatter')
 var consumption = initChart('seizure-consumption')
 var medicine = initChart('seizure-medicine')
@@ -21,6 +26,7 @@ fetch('assets/chinageo.json')
       echarts.registerMap('China', json, {});//register map as China
       render1()
       render2()
+      fetchScaleStockData()
       fetchScatterData()
       renderConsumption()
       renderMedicine()
@@ -37,6 +43,14 @@ function fetchScatterData(){
       .then(data => {
         renderHosScatter(data)
       })
+}
+
+function fetchScaleStockData(){
+  fetch('assets/scale-stock-2008-2015.json')
+    .then(res => res.json())
+    .then(data => {
+      renderScaleStock(data)
+    })
 }
 
 function render1 () {
@@ -207,6 +221,57 @@ function render2 () {
 
   map2.setOption(option);
 };
+
+function renderScaleStock(data) {
+  scaleStock.hideLoading();
+  const agg_sum = data.map(d=>({
+    name: d.province,
+    value: d['2014-2015']
+  }))
+
+  option = {
+      title: {
+          text: 'Control volumes of pangolin scales usage (kg)',
+          subtext: 'State Forestry Administration (2008 - 2015)',
+          sublink: '',
+          left: 'right'
+      },
+      tooltip: {
+          trigger: 'item',
+          showDelay: 0,
+          transitionDuration: 0.2,
+          formatter: function (params) {
+              return params.name + ': ' + params.value;
+          }
+      },
+      visualMap: {
+          left: 'right',
+          min: 0,
+          max: 35548.21,
+          inRange: {
+              color: ['#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+          },
+          text:['Max','Min'],           // 文本，默认为数值文本
+          calculable: true
+      },
+      toolbox: {
+          show: false,
+      },
+      series: [
+          {
+              name: '',
+              type: 'map',
+              map: 'China',
+              itemStyle:{
+                  emphasis:{label:{show:true}}
+              },
+              data: fillChinaNA(agg_sum)
+          }
+      ]
+  };
+
+  scaleStock.setOption(option);
+}
 
 function renderHosScatter (data) {
     //https://echarts.baidu.com/blog/2016/04/28/echarts-map-tutorial.html
