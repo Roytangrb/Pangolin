@@ -9,11 +9,6 @@ const initChart = id => {
   return chart
 }
 
-var hosScatter = initChart('hospital-scatter')
-
-var seizureLocByParts = initChart('seizure-locations-by-part')
-var seizureLocByTerms = initChart('seizure-locations-by-term')
-
 fetch('assets/chinageo.json')
   .then(res => res.json())
   .then(json => {
@@ -35,26 +30,6 @@ fetch('assets/chinageo.json')
       data: [{'name': '上海', 'value': 17},{'name': '云南', 'value': 13},{'name': '内蒙古', 'value': 24},{'name': '北京', 'value': 19},{'name': '吉林', 'value': 32},{'name': '四川', 'value': 43},{'name': '天津', 'value': 7},{'name': '宁夏', 'value': 10},{'name': '安徽', 'value': 29},{'name': '山东', 'value': 27},{'name': '山西', 'value': 17},{'name': '广东', 'value': 31},{'name': '广西', 'value': 22},{'name': '新疆', 'value': 18},{'name': '江苏', 'value': 25},{'name': '江西', 'value': 35},{'name': '河北', 'value': 31},{'name': '河南', 'value': 63},{'name': '浙江', 'value': 18},{'name': '海南', 'value': 4},{'name': '湖北', 'value': 19},{'name': '湖南', 'value': 42},{'name': '甘肃', 'value': 16},{'name': '福建', 'value': 16},{'name': '西藏', 'value': 9},{'name': '贵州', 'value': 20},{'name': '辽宁', 'value': 25},{'name': '重庆', 'value': 13},{'name': '陕西', 'value': 40},{'name': '青海', 'value': 11},{'name': '黑龙江', 'value': 20}],
       max: 63
     })
-
-    fetch('assets/scale-stock-2008-2015.json')
-      .then(res => res.json())
-      .then(data => {
-        renderChinaChoropleth({
-          chart: initChart('scale-stock'),
-          title: 'Control volumes of pangolin scales usage (kg)',
-          sub: 'State Forestry Administration (2008 - 2015)',
-          data: data.map(d=>({
-            name: d.province,
-            value: d['2014-2015']
-          })),
-          max: 35548.21,
-        })
-      })
-
-    fetchScatterData()
-
-    renderSeizureLocByParts()
-    renderSeizureLocByTerms()
 
     renderChinaChoropleth({
       chart: initChart('seizure-court-all-scale'),
@@ -120,24 +95,162 @@ fetch('assets/chinageo.json')
       data: [{"name": "安徽", "value": 12446},{"name": "福建", "value": 11690},{"name": "广东", "value": 243152 + 3572464},{"name": "广西", "value": 2093},{"name": "河北", "value": 26720},{"name": "湖北", "value": 5888},{"name": "湖南", "value": 139020},{"name": "辽宁", "value": 1336},{"name": "内蒙古", "value": 668},{"name": "云南", "value": 2966379},{"name": "浙江", "value": 19385}],
       max: 243152 + 3572464, // added a missed guangdong case, more to come
     })
-})
 
-function fetchScatterData(){
+    fetch('assets/scale-stock-2008-2015.json')
+      .then(res => res.json())
+      .then(data => {
+        renderChinaChoropleth({
+          chart: initChart('scale-stock'),
+          title: 'Control volumes of pangolin scales usage (kg)',
+          sub: 'State Forestry Administration (2008 - 2015)',
+          data: data.map(d=>({
+            name: d.province,
+            value: d['2014-2015']
+          })),
+          max: 35548.21,
+        })
+      })
+
     fetch('assets/lnglat_hospital.json')
       .then(res => res.json())
       .then(data => {
-        renderHosScatter(data)
+        renderChinaScatter({
+          chart: initChart('hospital-scatter'),
+          title: 'Designated Hospitals Using Products from Pangolins',
+          sub: 'Total: 712 hospitals',
+          data: data
+        })
       })
-}
 
-function renderHosScatter (data) {
+    renderChinaChoroplethMultiSeries({
+      chart: initChart('seizure-locations-by-part'),
+      title: 'Seizures locations By Form',
+      sub: '',
+      series: [
+          {
+            name: 'dead',
+            data: fillChinaNA([
+              {"name": "福建", "value": 1}, 
+              {"name": "广东", "value": 5}, 
+              {"name": "广西", "value": 2}, 
+              {"name": "云南", "value": 3}
+            ])
+          },
+          {
+            name: 'frozen',
+            data: fillChinaNA([
+              {"name": "福建", "value": 2},
+              {"name": "广东", "value": 1},
+              {"name": "广西", "value": 6},
+              {"name": "河北", "value": 1},
+              {"name": "湖北", "value": 1},
+              {"name": "湖南", "value": 3},
+              {"name": "江西", "value": 1},
+              {"name": "云南", "value": 4},
+              {"name": "浙江", "value": 6}
+            ])
+          },
+          {
+            name: 'live',
+            data: fillChinaNA([
+              {"name": "福建", "value": 2},
+              {"name": "广东", "value": 10},
+              {"name": "广西", "value": 8},
+              {"name": "湖北", "value": 1},
+              {"name": "湖南", "value": 2},
+              {"name": "云南", "value": 11},
+              {"name": "浙江", "value": 6}
+            ])
+          },
+          {
+            name: 'parts',
+            data: fillChinaNA([
+              {"name": "安徽", "value": 2}, 
+              {"name": "重庆", "value": 1}, 
+              {"name": "福建", "value": 3}, 
+              {"name": "广东", "value": 6}, 
+              {"name": "广西", "value": 4}, 
+              {"name": "湖北", "value": 2}, 
+              {"name": "湖南", "value": 1}, 
+              {"name": "吉林", "value": 1}, 
+              {"name": "辽宁", "value": 1}, 
+              {"name": "内蒙古", "value": 2}, 
+              {"name": "四川", "value": 2}, 
+              {"name": "云南", "value": 50}, 
+              {"name": "浙江", "value": 9}
+            ])
+          }
+      ],
+      max: 50
+    })
+
+    renderChinaChoroplethMultiSeries({
+      chart: initChart('seizure-locations-by-term'),
+      title: 'Seizures locations By Term',
+      sub: '',
+      series: [
+          {
+            name: 'scale',
+            data:fillChinaNA([
+              {"name": "安徽", "value": 2},
+              {"name": "重庆", "value": 1},
+              {"name": "福建", "value": 3},
+              {"name": "广东", "value": 5},
+              {"name": "广西", "value": 3},
+              {"name": "湖北", "value": 2},
+              {"name": "四川", "value": 2},
+              {"name": "云南", "value": 48},
+              {"name": "浙江", "value": 6}
+            ])
+          },
+          {
+            name: 'meat',
+            data: fillChinaNA([
+              {"name": "重庆", "value": 1},
+              {"name": "福建", "value": 1},
+              {"name": "广东", "value": 1},
+              {"name": "广西", "value": 1},
+              {"name": "吉林", "value": 1},
+              {"name": "云南", "value": 2},
+              {"name": "浙江", "value": 3}
+            ])
+          },
+          {
+            name: 'products',
+            data: fillChinaNA([
+              {"name": "湖南", "value": 1},
+              {"name": "云南", "value": 1},
+              {"name": "浙江", "value": 1}
+            ])
+          },
+          {
+            name: 'claw',
+            data: fillChinaNA([
+              {"name": "内蒙古", "value": 2},
+              {"name": "云南", "value": 1}
+            ])
+          },
+          {
+            name: 'skin',
+            data: fillChinaNA([
+              {"name": "辽宁", "value": 1},
+              {"name": "云南", "value": 3}
+            ])
+          }
+      ],
+      max: 48
+    })
+})
+
+function renderChinaScatter (obj) {
     //https://echarts.baidu.com/blog/2016/04/28/echarts-map-tutorial.html
-    hosScatter.hideLoading();
+    var {chart, title, sub, data} = obj
+    chart.hideLoading();
   
     option = {
         title: {
-            text: 'Designated Hospitals Using Products from Pangolins',
-            subtext: 'Total: 712 hospitals',
+            text: title,
+            subtext: sub,
             sublink: '',
             left: 'right'
         },
@@ -174,16 +287,23 @@ function renderHosScatter (data) {
         }]
     };
   
-    hosScatter.setOption(option);
+    chart.setOption(option);
 };
 
-function renderSeizureLocByParts () {
-  seizureLocByParts.hideLoading();
+function renderChinaChoroplethMultiSeries (obj) {
+  var {chart, title, sub, series, max} = obj
+  chart.hideLoading();
+
+  var serie_template = {
+    type: 'map',
+    map: 'China',
+    showLegendSymbol: false,
+  }
 
   option = {
       title: {
-          text: 'Seizures locations By Form',
-          subtext: '',
+          text: title,
+          subtext: sub,
           sublink: '',
           left: 'right'
       },
@@ -198,7 +318,7 @@ function renderSeizureLocByParts () {
       visualMap: {
           left: 'right',
           min: 0,
-          max: 50,
+          max: max,
           inRange: {
               color: ['#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
           },
@@ -209,194 +329,22 @@ function renderSeizureLocByParts () {
           show: false,
       },
       legend: {
-        data: ['dead','frozen', 'live', 'parts'],
+        data: series.map(s=>s.name),
         left: 'left',
         orient: 'vertical',
-        selectedMode: 'multiple',
-        selected: {
-          'dead': true,'frozen': false, 'live': false, 'parts': false
-        }
+        selectedMode: 'single',
       },
-      series: [
-          {
-              name: 'dead',
-              type: 'map',
-              map: 'China',
-              showLegendSymbol: false,
-              data:[
-                {"name": "福建", "value": 1}, 
-                {"name": "广东", "value": 5}, 
-                {"name": "广西", "value": 2}, 
-                {"name": "云南", "value": 3}
-              ]
-          },
-          {
-            name: 'frozen',
-            type: 'map',
-            map: 'China',
-            showLegendSymbol: false,
-            data: [
-              {"name": "福建", "value": 2},
-              {"name": "广东", "value": 1},
-              {"name": "广西", "value": 6},
-              {"name": "河北", "value": 1},
-              {"name": "湖北", "value": 1},
-              {"name": "湖南", "value": 3},
-              {"name": "江西", "value": 1},
-              {"name": "云南", "value": 4},
-              {"name": "浙江", "value": 6}
-            ]
-          },
-          {
-            name: 'live',
-            type: 'map',
-            map: 'China',
-            showLegendSymbol: false,
-            data: [
-              {"name": "福建", "value": 2},
-              {"name": "广东", "value": 10},
-              {"name": "广西", "value": 8},
-              {"name": "湖北", "value": 1},
-              {"name": "湖南", "value": 2},
-              {"name": "云南", "value": 11},
-              {"name": "浙江", "value": 6}
-            ]
-          },
-          {
-            name: 'parts',
-            type: 'map',
-            map: 'China',
-            showLegendSymbol: false,
-            data: [
-              {"name": "安徽", "value": 2}, 
-              {"name": "重庆", "value": 1}, 
-              {"name": "福建", "value": 3}, 
-              {"name": "广东", "value": 6}, 
-              {"name": "广西", "value": 4}, 
-              {"name": "湖北", "value": 2}, 
-              {"name": "湖南", "value": 1}, 
-              {"name": "吉林", "value": 1}, 
-              {"name": "辽宁", "value": 1}, 
-              {"name": "内蒙古", "value": 2}, 
-              {"name": "四川", "value": 2}, 
-              {"name": "云南", "value": 50}, 
-              {"name": "浙江", "value": 9}
-            ]
-          }
-      ]
+      // series: {
+      //   name: 
+      //   data:
+      // }
+      series: series.map(s=> ({
+        ...s,
+        ...serie_template
+      }))
   };
 
-  seizureLocByParts.setOption(option);
-};
-
-function renderSeizureLocByTerms () {
-  seizureLocByTerms.hideLoading();
-
-  option = {
-      title: {
-          text: 'Seizures locations By Term',
-          subtext: '',
-          sublink: '',
-          left: 'right'
-      },
-      tooltip: {
-          trigger: 'item',
-          showDelay: 0,
-          transitionDuration: 0.2,
-          formatter: function (params) {
-              return params.name + ': ' + params.value;
-          }
-      },
-      visualMap: {
-          left: 'right',
-          min: 0,
-          max: 48,
-          inRange: {
-              color: ['#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
-          },
-          text:['Max','Min'],           // 文本，默认为数值文本
-          calculable: true
-      },
-      toolbox: {
-          show: false,
-      },
-      legend: {
-        data: ['scale','meat', 'products', 'claw', 'skin'],
-        left: 'left',
-        orient: 'vertical',
-        selectedMode: 'multiple',
-        selected: {
-          'scale': true,'meat': false, 'products': false, 'claw': false, 'skin': false
-        }
-      },
-      series: [
-          {
-              name: 'scale',
-              type: 'map',
-              map: 'China',
-              showLegendSymbol: false,
-              data:[
-                {"name": "安徽", "value": 2},
-                {"name": "重庆", "value": 1},
-                {"name": "福建", "value": 3},
-                {"name": "广东", "value": 5},
-                {"name": "广西", "value": 3},
-                {"name": "湖北", "value": 2},
-                {"name": "四川", "value": 2},
-                {"name": "云南", "value": 48},
-                {"name": "浙江", "value": 6}
-              ]
-          },
-          {
-            name: 'meat',
-            type: 'map',
-            map: 'China',
-            showLegendSymbol: false,
-            data: [
-              {"name": "重庆", "value": 1},
-              {"name": "福建", "value": 1},
-              {"name": "广东", "value": 1},
-              {"name": "广西", "value": 1},
-              {"name": "吉林", "value": 1},
-              {"name": "云南", "value": 2},
-              {"name": "浙江", "value": 3}
-            ]
-          },
-          {
-            name: 'products',
-            type: 'map',
-            map: 'China',
-            showLegendSymbol: false,
-            data: [
-              {"name": "湖南", "value": 1},
-              {"name": "云南", "value": 1},
-              {"name": "浙江", "value": 1}
-            ]
-          },
-          {
-            name: 'claw',
-            type: 'map',
-            map: 'China',
-            showLegendSymbol: false,
-            data: [
-              {"name": "内蒙古", "value": 2},
-              {"name": "云南", "value": 1}
-            ]
-          },
-          {
-            name: 'skin',
-            type: 'map',
-            map: 'China',
-            showLegendSymbol: false,
-            data: [
-              {"name": "辽宁", "value": 1},
-              {"name": "云南", "value": 3}
-            ]
-          }
-      ]
-  };
-
-  seizureLocByTerms.setOption(option);
+  chart.setOption(option);
 };
 
 function renderChinaChoropleth (obj) {
