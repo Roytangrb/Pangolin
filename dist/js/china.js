@@ -15,6 +15,7 @@ var hosScatter = initChart('scatter')
 var consumption = initChart('seizure-consumption')
 var medicine = initChart('seizure-medicine')
 var courtAll = initChart('seizure-court-all')
+
 var seizureLoc = initChart('seizure-locations')
 var seizureLocByParts = initChart('seizure-locations-by-part')
 var seizureLocByTerms = initChart('seizure-locations-by-term')
@@ -23,19 +24,43 @@ var seizureItemWorth = initChart('seizure-item-worth')
 fetch('assets/chinageo.json')
   .then(res => res.json())
   .then(json => {
-      echarts.registerMap('China', json, {});//register map as China
-      render1()
-      render2()
-      fetchScaleStockData()
-      fetchScatterData()
-      renderConsumption()
-      renderMedicine()
-      renderAllCourtLoc()
-      renderSeizureLoc()
-      renderSeizureLocByParts()
-      renderSeizureLocByTerms()
-      renderSeizureItemWorth()
-  })
+    echarts.registerMap('China', json, {});//register map as China
+    render1()
+    render2()
+    fetchScaleStockData()
+    fetchScatterData()
+    renderConsumption()
+    renderMedicine()
+    renderAllCourtLoc()
+    renderSeizureLoc()
+    renderSeizureLocByParts()
+    renderSeizureLocByTerms()
+    renderSeizureItemWorth()
+
+    renderChinaChoropleth({
+      chart: initChart('seizure-court-all-scale'),
+      title: 'Scale', 
+      sub: '2017-2019 163 cases (40%)', 
+      data: [{'name': '上海', 'value': 2}, {'name': '云南', 'value': 78}, {'name': '内蒙古', 'value': 1}, {'name': '北京', 'value': 1}, {'name': '吉林', 'value': 1}, {'name': '四川', 'value': 3}, {'name': '安徽', 'value': 6}, {'name': '山东', 'value': 1}, {'name': '广东', 'value': 19}, {'name': '广西', 'value': 6}, {'name': '江苏', 'value': 2}, {'name': '江西', 'value': 2}, {'name': '河北', 'value': 1}, {'name': '河南', 'value': 1}, {'name': '浙江', 'value': 22}, {'name': '湖北', 'value': 1}, {'name': '湖南', 'value': 5}, {'name': '福建', 'value': 5}, {'name': '西藏', 'value': 2}, {'name': '贵州', 'value': 1}, {'name': '辽宁', 'value': 2}, {'name': '重庆', 'value': 1}],
+      max: 78
+    })
+
+    renderChinaChoropleth({
+      chart: initChart('seizure-court-all-live'),
+      title: 'Live', 
+      sub: '2017-2019 171 cases (42%)', 
+      data: [{'name': '上海', 'value': 1}, {'name': '云南', 'value': 35}, {'name': '吉林', 'value': 1}, {'name': '广东', 'value': 33}, {'name': '广西', 'value': 26}, {'name': '江苏', 'value': 5}, {'name': '河北', 'value': 1}, {'name': '河南', 'value': 4}, {'name': '浙江', 'value': 40}, {'name': '海南', 'value': 2}, {'name': '湖南', 'value': 7}, {'name': '福建', 'value': 15}, {'name': '贵州', 'value': 1}],
+      max: 40
+    })
+
+    renderChinaChoropleth({
+      chart: initChart('seizure-court-all-dead'),
+      title: 'Dead', 
+      sub: '2017-2019 143 cases (35%)', 
+      data: [{'name': '云南', 'value': 26}, {'name': '吉林', 'value': 1}, {'name': '广东', 'value': 28}, {'name': '广西', 'value': 20}, {'name': '江苏', 'value': 4}, {'name': '江西', 'value': 1}, {'name': '河北', 'value': 2}, {'name': '河南', 'value': 2}, {'name': '浙江', 'value': 37}, {'name': '海南', 'value': 1}, {'name': '湖北', 'value': 1}, {'name': '湖南', 'value': 6}, {'name': '福建', 'value': 13}, {'name': '重庆', 'value': 1}],
+      max: 37
+    })
+})
 
 function fetchScatterData(){
     fetch('assets/lnglat_hospital.json')
@@ -165,14 +190,6 @@ function render2 () {
       },
       toolbox: {
           show: false,
-          //orient: 'vertical',
-          // left: 'left',
-          // top: 'top',
-          // feature: {
-          //     dataView: {readOnly: false},
-          //     restore: {},
-          //     saveAsImage: {}
-          // }
       },
       series: [
           {
@@ -912,4 +929,53 @@ function renderSeizureItemWorth () {
     };
 
     seizureItemWorth.setOption(option);
+};
+
+
+function renderChinaChoropleth (obj) {
+  var {chart, title, sub, data, max} = obj
+  chart.hideLoading();
+
+  option = {
+      title: {
+          text: title,
+          subtext: sub,
+          sublink: '',
+          left: 'right'
+      },
+      tooltip: {
+          trigger: 'item',
+          showDelay: 0,
+          transitionDuration: 0.2,
+          formatter: function (params) {
+              return params.name + ': ' + params.value;
+          }
+      },
+      visualMap: {
+          left: 'right',
+          min: 0,
+          max: max,
+          inRange: {
+              color: ['#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+          },
+          text:['Max','Min'],           // 文本，默认为数值文本
+          calculable: true
+      },
+      toolbox: {
+          show: false,
+      },
+      series: [
+          {
+              name: '',
+              type: 'map',
+              map: 'China',
+              itemStyle:{
+                  emphasis:{label:{show:true}}
+              },
+              data: fillChinaNA(data)
+          }
+      ]
+  };
+
+  chart.setOption(option);
 };
