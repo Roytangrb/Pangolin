@@ -17,8 +17,8 @@ fetch('assets/chinageo.json')
     //render Pharmaceutical Companies with Products from Pangolins
     renderChinaChoropleth({
       chart: initChart('med-comp'),
-      title: 'Pharmaceutical Companies with Products from Pangolins',
-      sub: 'Total: 301 Companies',
+      title: 'Medicine made with pangolin \ningredients by different companies',
+      sub: 'Total: 301 permits (209 companies)',
       data: [{'name': '上海', 'value': 4},{'name': '云南', 'value': 3},{'name': '内蒙古', 'value': 17},{'name': '北京', 'value': 17},{'name': '吉林', 'value': 58},{'name': '四川', 'value': 4},{'name': '天津', 'value': 17},{'name': '安徽', 'value': 3},{'name': '山东', 'value': 10},{'name': '山西', 'value': 18},{'name': '广东', 'value': 4},{'name': '广西', 'value': 1},{'name': '新疆', 'value': 1},{'name': '江苏', 'value': 3},{'name': '江西', 'value': 6},{'name': '河北', 'value': 22},{'name': '河南', 'value': 20},{'name': '浙江', 'value': 5},{'name': '湖北', 'value': 7},{'name': '湖南', 'value': 3},{'name': '甘肃', 'value': 5},{'name': '贵州', 'value': 7},{'name': '辽宁', 'value': 26},{'name': '重庆', 'value': 2},{'name': '陕西', 'value': 7},{'name': '青海', 'value': 3},{'name': '黑龙江', 'value': 28}],
       max: 58
     })
@@ -83,17 +83,17 @@ fetch('assets/chinageo.json')
     renderChinaChoropleth({
       chart: initChart('seizure-locations'),
       title: 'Seizures locations',
-      sub: 'Total: 144 Seizures',
-      data: [{'name': '云南', 'value':  65},{'name': '内蒙古', 'value': 2},{'name': '吉林', 'value':  1},{'name': '四川', 'value':  2},{'name': '安徽', 'value':  2},{'name': '广东', 'value':  17},{'name': '广西', 'value':  16},{'name': '江西', 'value':  1},{'name': '河北', 'value':  1},{'name': '浙江', 'value':  18},{'name': '湖北', 'value':  4},{'name': '湖南', 'value':  5},{'name': '甘肃', 'value':  0},{'name': '福建', 'value':  8},{'name': '辽宁', 'value':  1},{'name': '重庆', 'value':  1}],
-      max: 65
+      sub: 'Total: 162 Seizures',
+      data: [{'name': "安徽", 'value': 2}, {'name': '重庆', 'value': 1}, {'name': '福建', 'value': 8}, {'name': '广东', 'value': 21}, {'name': '广西', 'value': 17}, {'name': '河北', 'value': 1}, {'name': '湖北', 'value': 4}, {'name': '湖南', 'value': 5}, {'name': '江西', 'value': 1}, {'name': '吉林', 'value': 1}, {'name': '辽宁', 'value': 1}, {'name': '内蒙古', 'value': 2}, {'name': '上海', 'value': 2}, {'name': '四川', 'value': 2}, {'name': '西藏', 'value': 1}, {'name': '云南', 'value': 75}, {'name': '浙江', 'value': 18}],
+      max: 75
     })
 
     renderChinaChoropleth({
       chart: initChart('seizure-item-worth'),
       title: 'Worth of Pangolin Seizures (in CNY)',
-      sub: 'Total: 65 valid cases',
-      data: [{"name": "安徽", "value": 12446},{"name": "福建", "value": 11690},{"name": "广东", "value": 243152 + 3572464},{"name": "广西", "value": 2093},{"name": "河北", "value": 26720},{"name": "湖北", "value": 5888},{"name": "湖南", "value": 139020},{"name": "辽宁", "value": 1336},{"name": "内蒙古", "value": 668},{"name": "云南", "value": 2966379},{"name": "浙江", "value": 19385}],
-      max: 243152 + 3572464, // added a missed guangdong case, more to come
+      sub: 'Total: 78 valid cases',
+      data: [{'name': "安徽", 'value': 12446.0}, {'name': '福建', 'value': 11690.0}, {'name': '广东', 'value': 5960564.0}, {'name': '广西', 'value': 2093.0}, {'name': '河北', 'value': 26720.0}, {'name': '湖北', 'value': 5888.0}, {'name': '湖南', 'value': 139020.0}, {'name': '辽宁', 'value': 1336.0}, {'name': '内蒙古', 'value': 668.0}, {'name': '上海', 'value': 8309920.0}, {'name': '西藏', 'value': 55110.0}, {'name': '云南', 'value': 3076683.3299999996}, {'name': '浙江', 'value': 19385.0}],
+      max: 8309920
     })
 
     fetch('assets/scale-stock-2008-2015.json')
@@ -140,7 +140,7 @@ fetch('assets/chinageo.json')
             name: 'frozen',
             data: fillChinaNA([
               {"name": "福建", "value": 2},
-              {"name": "广东", "value": 1},
+              {"name": "广东", "value": 2},
               {"name": "广西", "value": 6},
               {"name": "河北", "value": 1},
               {"name": "湖北", "value": 1},
@@ -155,10 +155,10 @@ fetch('assets/chinageo.json')
             data: fillChinaNA([
               {"name": "福建", "value": 2},
               {"name": "广东", "value": 10},
-              {"name": "广西", "value": 8},
+              {"name": "广西", "value": 9},
               {"name": "湖北", "value": 1},
               {"name": "湖南", "value": 2},
-              {"name": "云南", "value": 11},
+              {"name": "云南", "value": 14},
               {"name": "浙江", "value": 6}
             ])
           },
@@ -168,20 +168,22 @@ fetch('assets/chinageo.json')
               {"name": "安徽", "value": 2}, 
               {"name": "重庆", "value": 1}, 
               {"name": "福建", "value": 3}, 
-              {"name": "广东", "value": 6}, 
+              {"name": "广东", "value": 9}, 
               {"name": "广西", "value": 4}, 
               {"name": "湖北", "value": 2}, 
               {"name": "湖南", "value": 1}, 
               {"name": "吉林", "value": 1}, 
               {"name": "辽宁", "value": 1}, 
-              {"name": "内蒙古", "value": 2}, 
-              {"name": "四川", "value": 2}, 
-              {"name": "云南", "value": 50}, 
+              {"name": "内蒙古", "value": 2},
+              {"name": "上海", "value": 2},
+              {"name": "四川", "value": 2},
+              {"name": "西藏", "value": 1},  
+              {"name": "云南", "value": 58}, 
               {"name": "浙江", "value": 9}
             ])
           }
       ],
-      max: 50
+      max: 58
     })
 
     renderChinaChoroplethMultiSeries({
@@ -191,54 +193,26 @@ fetch('assets/chinageo.json')
       series: [
           {
             name: 'scale',
-            data:fillChinaNA([
-              {"name": "安徽", "value": 2},
-              {"name": "重庆", "value": 1},
-              {"name": "福建", "value": 3},
-              {"name": "广东", "value": 5},
-              {"name": "广西", "value": 3},
-              {"name": "湖北", "value": 2},
-              {"name": "四川", "value": 2},
-              {"name": "云南", "value": 48},
-              {"name": "浙江", "value": 6}
-            ])
+            data:fillChinaNA([{"name": "安徽", "value": 2}, {"name": "重庆", "value": 1}, {"name": "福建", "value": 3}, {"name": "广东", "value": 8}, {"name": "广西", "value": 3}, {"name": "湖北", "value": 2}, {"name": "上海", "value": 2}, {"name": "四川", "value": 2}, {"name": "西藏", "value": 1}, {"name": "云南", "value": 56}, {"name": "浙江", "value": 6}])
           },
           {
             name: 'meat',
-            data: fillChinaNA([
-              {"name": "重庆", "value": 1},
-              {"name": "福建", "value": 1},
-              {"name": "广东", "value": 1},
-              {"name": "广西", "value": 1},
-              {"name": "吉林", "value": 1},
-              {"name": "云南", "value": 2},
-              {"name": "浙江", "value": 3}
-            ])
+            data: fillChinaNA([{"name": "重庆", "value": 1}, {"name": "福建", "value": 1}, {"name": "广东", "value": 1}, {"name": "广西", "value": 1}, {"name": "吉林", "value": 1}, {"name": "云南", "value": 2}, {"name": "浙江", "value": 3}])
           },
           {
             name: 'products',
-            data: fillChinaNA([
-              {"name": "湖南", "value": 1},
-              {"name": "云南", "value": 1},
-              {"name": "浙江", "value": 1}
-            ])
+            data: fillChinaNA([{"name": "湖南", "value": 1},{"name": "云南", "value": 1},{"name": "浙江", "value": 1}])
           },
           {
             name: 'claw',
-            data: fillChinaNA([
-              {"name": "内蒙古", "value": 2},
-              {"name": "云南", "value": 1}
-            ])
+            data: fillChinaNA([{"name": "内蒙古", "value": 2},{"name": "云南", "value": 1}])
           },
           {
             name: 'skin',
-            data: fillChinaNA([
-              {"name": "辽宁", "value": 1},
-              {"name": "云南", "value": 3}
-            ])
+            data: fillChinaNA([{"name": "辽宁", "value": 1},{"name": "云南", "value": 3}])
           }
       ],
-      max: 48
+      max: 56
     })
 
     renderBar({
