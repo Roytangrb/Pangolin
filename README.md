@@ -1,9 +1,18 @@
 # Pangolin Project Data Catalog
 
+## Final story site
+ - [Shared drive](https://drive.google.com/drive/folders/1TCcus6bVJ_tnKkQ3XWVcAn6VjytE8che)
+ - [Zeplin design](https://zpl.io/VYGm0AE)
+
 ## Shared Docs
 ### Stories
  - [20190602 Mapping the routes story](https://docs.google.com/document/d/1Gj6y-f-_dlizGP6nQR4bKfpKGlRds6O6IuUFtLEqKKM/edit)
- - [20190831 China data glimpse and findings](https://docs.google.com/presentation/d/1zRZQpi5qNBeltKUTR-qPAu_li1L6SsxyppbZIrUiqjI/edit?usp=sharing) 
+ - [20190831 China data glimpse and findings](https://docs.google.com/presentation/d/1zRZQpi5qNBeltKUTR-qPAu_li1L6SsxyppbZIrUiqjI/edit?usp=sharing)
+ - [20190831 Final Story outlint and nutgraph](https://docs.google.com/document/d/1RpuKvaFx1rX2p1DEpreCxB7nV1r7pC3MLtJNnF6UBE4/edit)
+
+### DB
+ - [Pangolin Seizure data from court judgements](https://docs.google.com/spreadsheets/d/1kjy_cpI0Ka3hTS5VtTHLeDPnBxNfR2DAcLSu3-34-Sc/edit?usp=sharing)
+ - [Court judgemnets fulltext from itslaw and seizure date coding table](https://docs.google.com/spreadsheets/d/1CETPdgdD6lO0kgtQfvXWNnf-Y6n4LL7QYD9Fw6v-prA/edit?usp=sharing)
 
 ### Data
 - [Patterns and Features in CITES](https://docs.google.com/presentation/d/1PGrCWcCy-S8KxtQAuohghaG6A4mMQwjpG8JA29xRstE/edit?usp=sharing)
