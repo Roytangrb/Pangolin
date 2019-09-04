@@ -3,6 +3,7 @@
 ## Shared Docs
 ### Stories
  - [20190602 Mapping the routes story](https://docs.google.com/document/d/1Gj6y-f-_dlizGP6nQR4bKfpKGlRds6O6IuUFtLEqKKM/edit)
+ - [20190831 China data glimpse and findings](https://docs.google.com/presentation/d/1zRZQpi5qNBeltKUTR-qPAu_li1L6SsxyppbZIrUiqjI/edit?usp=sharing) 
 
 ### Data
 - [Patterns and Features in CITES](https://docs.google.com/presentation/d/1PGrCWcCy-S8KxtQAuohghaG6A4mMQwjpG8JA29xRstE/edit?usp=sharing)
