@@ -13,8 +13,10 @@
 ### DB
  - [Pangolin Seizure data from court judgements](https://docs.google.com/spreadsheets/d/1kjy_cpI0Ka3hTS5VtTHLeDPnBxNfR2DAcLSu3-34-Sc/edit?usp=sharing)
  - [Court judgemnets fulltext from itslaw and seizure date coding table](https://docs.google.com/spreadsheets/d/1CETPdgdD6lO0kgtQfvXWNnf-Y6n4LL7QYD9Fw6v-prA/edit?usp=sharing)
-
+ - [EIA table](https://docs.google.com/spreadsheets/d/1nwk0hIfZ5vQwqlBIFDv4WXr1p4DSWIX9fTZO9X7rLsg/edit#gid=844837541)
+ 
 ### Data
+- [EIA charts](https://docs.google.com/presentation/d/1CRAP0V0jWgCOKsipZBA512OkHGlbSThZfgRCvdh5hho/edit#slide=id.g6296d812aa_0_34)
 - [Patterns and Features in CITES](https://docs.google.com/presentation/d/1PGrCWcCy-S8KxtQAuohghaG6A4mMQwjpG8JA29xRstE/edit?usp=sharing)
 - [20190601 Workshop Data Session Slides](https://docs.google.com/presentation/d/1wB5cf75hAbNADG9mymg9xkDNMBLuPGhacTZpZqLVsyg/edit?usp=sharing)  
 - [20190601 Pangolin data game plan](https://docs.google.com/document/d/166GK6Lsq7-NkxUqYSJ_2Kr46qFX8FZLHY8kBN6DaV5I/edit)
